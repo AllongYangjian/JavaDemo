@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="anno09_jdcbTest" />
+        <module name="anno6_basic_demo" />
+        <module name="anno3_componentscan_filter" />
+        <module name="anno4_import" />
+        <module name="tx_03_annotation_transaction" />
+        <module name="tx_04_springmvc_1" />
+        <module name="anno5_propertysource" />
+        <module name="anno4_import_importselector" />
+        <module name="anno8_designJdbcTemplate" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="anno09_jdcbTest" target="1.5" />
+      <module name="anno3_componentscan_filter" target="1.5" />
+      <module name="anno4_import" target="1.5" />
+      <module name="anno4_import_importselector" target="1.5" />
+      <module name="anno5_propertysource" target="1.5" />
+      <module name="anno6_basic_demo" target="1.5" />
+      <module name="anno7_jdbc" target="1.5" />
+      <module name="anno8_designJdbcTemplate" target="1.5" />
+      <module name="annotation" target="1.5" />
+      <module name="tx_03_annotation_transaction" target="1.5" />
+      <module name="tx_04_springmvc_1" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JavaConfig:war">
+    <output-path>$PROJECT_DIR$/JavaConfig/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>JavaConfig</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="JavaConfig.war">
+      <element id="artifact" artifact-name="JavaConfig:war exploded" />
+    </root>
+  </artifact>
+</component>

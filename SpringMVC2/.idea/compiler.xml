@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="JavaConfig" />
+        <module name="JSONView" />
+        <module name="PDFView" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Demo1" target="1.5" />
+      <module name="Demo2" target="1.5" />
+      <module name="Demo3" target="1.5" />
+      <module name="JavaConfig" target="1.5" />
+      <module name="JSONView" target="1.5" />
+      <module name="PDFView" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/tx_04_springmvc_1" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/annotation/pom.xml" />
+        <option value="$PROJECT_DIR$/anno4_import_importselector/pom.xml" />
+        <option value="$PROJECT_DIR$/anno5_propertysource/pom.xml" />
+        <option value="$PROJECT_DIR$/tx_03_annotation_transaction/pom.xml" />
+        <option value="$PROJECT_DIR$/tx_04_springmvc_1/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

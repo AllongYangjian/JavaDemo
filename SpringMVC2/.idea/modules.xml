@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JSONView/JSONView.iml" filepath="$PROJECT_DIR$/JSONView/JSONView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JavaConfig/JavaConfig.iml" filepath="$PROJECT_DIR$/JavaConfig/JavaConfig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PDFView/PDFView.iml" filepath="$PROJECT_DIR$/PDFView/PDFView.iml" />
+    </modules>
+  </component>
+</project>

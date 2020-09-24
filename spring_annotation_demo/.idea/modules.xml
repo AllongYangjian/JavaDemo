@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/anno09_jdcbTest/anno09_jdcbTest.iml" filepath="$PROJECT_DIR$/anno09_jdcbTest/anno09_jdcbTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anno3_componentscan_filter/anno3_componentscan_filter.iml" filepath="$PROJECT_DIR$/anno3_componentscan_filter/anno3_componentscan_filter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anno4_import/anno4_import.iml" filepath="$PROJECT_DIR$/anno4_import/anno4_import.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anno4_import_importselector/anno4_import_importselector.iml" filepath="$PROJECT_DIR$/anno4_import_importselector/anno4_import_importselector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anno5_propertysource/anno5_propertysource.iml" filepath="$PROJECT_DIR$/anno5_propertysource/anno5_propertysource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anno6_basic_demo/anno6_basic_demo.iml" filepath="$PROJECT_DIR$/anno6_basic_demo/anno6_basic_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anno7_jdbc/anno7_jdbc.iml" filepath="$PROJECT_DIR$/anno7_jdbc/anno7_jdbc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/anno8_designJdbcTemplate/anno8_designJdbcTemplate.iml" filepath="$PROJECT_DIR$/anno8_designJdbcTemplate/anno8_designJdbcTemplate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/annotation/annotation.iml" filepath="$PROJECT_DIR$/annotation/annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tx_03_annotation_transaction/tx_03_annotation_transaction.iml" filepath="$PROJECT_DIR$/tx_03_annotation_transaction/tx_03_annotation_transaction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tx_04_springmvc_1/tx_04_springmvc_1.iml" filepath="$PROJECT_DIR$/tx_04_springmvc_1/tx_04_springmvc_1.iml" />
+    </modules>
+  </component>
+</project>
