@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jpa/jpa.iml" filepath="$PROJECT_DIR$/jpa/jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mapstrcut/mapstrcut.iml" filepath="$PROJECT_DIR$/mapstrcut/mapstrcut.iml" />
     </modules>
   </component>
 </project>
