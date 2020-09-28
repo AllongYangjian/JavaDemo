@@ -21,7 +21,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Entity
-@Table(name = "sys_dept")
+@Table(name = "view_dept")
 public class Dept {
 
     @Id
