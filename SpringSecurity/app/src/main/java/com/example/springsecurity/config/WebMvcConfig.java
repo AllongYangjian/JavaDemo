@@ -3,7 +3,7 @@ package com.example.springsecurity.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -23,5 +23,7 @@ public class WebMvcConfig  implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/403").setViewName("403");
+        registry.addViewController("/500").setViewName("500");
     }
 }
