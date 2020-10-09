@@ -13,9 +13,9 @@
     <div th:if="${param.logout}">
         You have bean logged out
     </div>
-    <form action="/login" method="post">
-        <div><label for="username">User Name</label><input id="username" type="text" name="username"></div>
-        <div><label for="password">User Name</label><input id="password" type="text" name="password"></div>
+    <form th:action="@{/login}" method="POST">
+        <div><label for="username">Username</label><input id="username" type="text" name="username"></div>
+        <div><label for="password">Password</label><input id="password" type="text" name="password"></div>
         <div><input type="submit" value="Sign In"></div>
     </form>
 </body>
