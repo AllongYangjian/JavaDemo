@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-jsp/spring-security-jsp.iml" filepath="$PROJECT_DIR$/spring-security-jsp/spring-security-jsp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-security-jwt-rsa/spring-security-jwt-rsa.iml" filepath="$PROJECT_DIR$/spring-security-jwt-rsa/spring-security-jwt-rsa.iml" />
     </modules>
   </component>
 </project>
