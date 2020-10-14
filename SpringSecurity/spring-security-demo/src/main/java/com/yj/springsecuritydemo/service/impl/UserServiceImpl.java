@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
             for (SysRole role : roles) {
                 authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
             }
-            UserDetails userDetails = new User(user.getUsername(), user.getPassword(), authorities);
+            UserDetails userDetails = new User(user.getUsername(), user.getPassword(), user.getStatus()==1,true,true,true,authorities);
             return userDetails;
         } catch (Exception e) {
             e.printStackTrace();

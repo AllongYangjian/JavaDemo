@@ -28,6 +28,8 @@ public class SysUser implements UserDetails {
 
     private String password;
 
+    private Integer status;
+
     private List<SysRole> roles;
 
     @Override
