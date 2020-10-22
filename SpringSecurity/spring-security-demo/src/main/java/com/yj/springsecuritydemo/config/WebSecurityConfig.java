@@ -81,20 +81,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService service;
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public BCryptPasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-//        UserDetails user = User.withUsername("root")
-//                .password("{noop}123")
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
-        return service;
+        UserDetails user = User.withUsername("root")
+                .password("{noop}123")
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(user);
+//        return service;
     }
 
     @Override

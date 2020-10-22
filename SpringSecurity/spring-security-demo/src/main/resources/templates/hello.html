@@ -12,6 +12,7 @@
 <div sec:authorize="hasRole('ROLE_USER')">
     <a th:href="@{/product/findAll}">查找所有</a>
 </div>
+<a th:href="@{/test}">Test</a>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
 </form>
