@@ -33,7 +33,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true,jsr250Enabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
@@ -86,19 +86,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-//        UserDetails user = User.withUsername("root")
-//                .password("{noop}123")
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
-        return service;
-    }
+//    @Bean
+//    @Override
+//    public UserDetailsService userDetailsService() {
+////        UserDetails user = User.withUsername("root")
+////                .password("{noop}123")
+////                .roles("USER")
+////                .build();
+////        return new InMemoryUserDetailsManager(user);
+//        return service;
+//    }
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService());
+//    }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService());
+        auth.userDetailsService(service)
+                .passwordEncoder(passwordEncoder());
     }
 }
