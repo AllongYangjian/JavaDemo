@@ -2,6 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/container" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/container/common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/container/spring-jwt-rsa-mybatis" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-jwt-rsa" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-security-demo" charset="UTF-8" />
   </component>
