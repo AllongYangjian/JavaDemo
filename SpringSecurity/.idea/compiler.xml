@@ -10,12 +10,14 @@
         <module name="springjwtrsamybatis" />
         <module name="common" />
         <module name="spring-security-demo" />
+        <module name="resource" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="app" target="1.8" />
       <module name="common" target="1.8" />
       <module name="container" target="1.8" />
+      <module name="resource" target="1.8" />
       <module name="spring-jwt-rsa" target="1.5" />
       <module name="spring-security (1)" target="1.8" />
       <module name="spring-security (2)" target="1.8" />
@@ -29,6 +31,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="app" options="-parameters" />
       <module name="common" options="-parameters" />
+      <module name="resource" options="-parameters" />
       <module name="spring-jwt-rsa" options="-parameters" />
       <module name="spring-security (2)" options="-parameters" />
       <module name="spring-security-demo" options="-parameters" />
