@@ -1,4 +1,4 @@
-package com.yj.springsecuritydemo.domain;
+package com.yj.springjwtrsamybatis.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -7,12 +7,12 @@ import org.springframework.security.core.GrantedAuthority;
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
  * FileName: SysRole
- * Author:   2yangjian
- * Date:     2020/10/13 21:52
- * Description: 系统角色
+ * Author:   yangjian
+ * Date:     2020/10/28 22:49
+ * Description:
  * History:
  * <author>          <time>          <version>          <desc>
- * yangjian       2020/10/13 21:52        1.0              描述
+ * yangjian       2020/10/28 22:49        1.0              描述
  */
 @Data
 public class SysRole implements GrantedAuthority {

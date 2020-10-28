@@ -4,7 +4,6 @@ import com.yj.common.utils.RsaUtils;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import java.security.PrivateKey;
@@ -20,7 +19,6 @@ import java.security.PublicKey;
  * <author>          <time>          <version>          <desc>
  * yangjian       2020/10/28 0:45        1.0              描述
  */
-@Configuration
 @ConfigurationProperties("rsa.key")
 @Getter
 @Setter
