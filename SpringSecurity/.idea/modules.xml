@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/container/common/common.iml" filepath="$PROJECT_DIR$/container/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/container/container.iml" filepath="$PROJECT_DIR$/container/container.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth2/oauth2.iml" filepath="$PROJECT_DIR$/oauth2/oauth2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth2/oauth2-resource/oauth2resource.iml" filepath="$PROJECT_DIR$/oauth2/oauth2-resource/oauth2resource.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oauth2/oauth2-server/oauth2server.iml" filepath="$PROJECT_DIR$/oauth2/oauth2-server/oauth2server.iml" />
       <module fileurl="file://$PROJECT_DIR$/container/resource/resource.iml" filepath="$PROJECT_DIR$/container/resource/resource.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-security-demo/spring-security-demo.iml" filepath="$PROJECT_DIR$/spring-security-demo/spring-security-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/container/spring-jwt-rsa-mybatis/springjwtrsamybatis.iml" filepath="$PROJECT_DIR$/container/spring-jwt-rsa-mybatis/springjwtrsamybatis.iml" />

@@ -1,5 +1,9 @@
 package com.yj.springjwtrsamybatis.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,6 +23,10 @@ public class ProductController {
 
     @RequestMapping("/findAll")
     public String findAll() {
+        AuthenticationManager object = authenticationManagerBuilder.getObject();
         return "查询产品列表成功";
     }
+
+    @Autowired
+    private AuthenticationManagerBuilder authenticationManagerBuilder;
 }
