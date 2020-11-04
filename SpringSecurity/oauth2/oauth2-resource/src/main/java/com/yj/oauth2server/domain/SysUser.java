@@ -1,4 +1,4 @@
-package com.yj.oauth2.domain;
+package com.yj.oauth2server.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

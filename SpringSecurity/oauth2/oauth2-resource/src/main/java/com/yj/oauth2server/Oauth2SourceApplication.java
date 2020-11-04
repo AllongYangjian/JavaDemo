@@ -1,4 +1,4 @@
-package com.yj.oauth2;
+package com.yj.oauth2server;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
