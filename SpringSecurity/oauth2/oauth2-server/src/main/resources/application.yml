@@ -1,0 +1,17 @@
+server:
+  port: 10010
+spring:
+  datasource:
+    url: jdbc:mysql:///oauth2?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: allong
+  main:
+    allow-bean-definition-overriding: true
+mybatis:
+  type-aliases-package: com.yj.oauth2server.domain
+  configuration:
+    map-underscore-to-camel-case: true
+logging:
+  level:
+    com.yj: debug

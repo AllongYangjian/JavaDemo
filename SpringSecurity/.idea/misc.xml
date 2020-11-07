@@ -8,6 +8,7 @@
       <list>
         <option value="$PROJECT_DIR$/spring-security-demo/pom.xml" />
         <option value="$PROJECT_DIR$/container/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth2/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
