@@ -2,6 +2,7 @@ package com.yj.hibernate.test;
 
 
 import com.yj.hibernate.domain.Address;
+import com.yj.hibernate.domain.News;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,6 +10,8 @@ import org.hibernate.cfg.Configuration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.sql.Timestamp;
 
 
 public class AddressTest {
@@ -36,6 +39,17 @@ public class AddressTest {
         address.setAddress("浙江杭州拱墅");
         System.err.println(address.toString());
 
+    }
+
+    @Test
+    public void testIdGenerator() throws InterruptedException {
+        News news = new News();
+        news.setTitle("AA");
+        news.setAuthor("BB");
+        news.setDate(new Timestamp(System.currentTimeMillis()));
+
+        session.save(news);
+        Thread.sleep(5000);
     }
 
     @After

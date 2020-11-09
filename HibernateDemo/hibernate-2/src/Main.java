@@ -4,6 +4,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.sql.Timestamp;
+
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
  * FileName: Main
@@ -28,13 +30,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        testNews();
+//        testNews();
+        testIdGenerator();
     }
 
     public static void testNews() {
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
-
         try {
             News news = session.find(News.class, 1);
             transaction.commit();
@@ -45,6 +47,37 @@ public class Main {
         } finally {
             session.close();
         }
-
     }
+
+
+    public static void testIdGenerator() {
+        Session session = getSession();
+        Transaction transaction = session.beginTransaction();
+
+        saveNews(session);
+        saveNews(session);
+
+//        try {
+//            Thread.sleep(5000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+        transaction.commit();
+        session.close();
+    }
+
+    private static void saveNews(Session session){
+        News news = new News();
+        news.setTitle("AA");
+        news.setAuthor("BB");
+        news.setDate(new Timestamp(System.currentTimeMillis()));
+        session.save(news);
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

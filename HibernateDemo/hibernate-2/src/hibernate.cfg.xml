@@ -15,7 +15,20 @@
         <property name="format_sql">true</property>
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
         <!--        设置数据库的隔离级别-->
-        <property name="connection.isolation">2</property>
+<!--        <property name="connection.isolation">2</property>-->
+
+        <!--        C3P0配置 -->
+        <property name="c3p0.max_size">10</property>
+        <property name="c3p0.min_size">5</property>
+        <property name="c3p0.acquire_increment">2</property>
+        <property name="c3p0.idle_test_period">2000</property>
+        <property name="c3p0.timeout">2000</property>
+        <property name="c3p0.max_statements">10</property>
+
+        <!--        设置jdbc的statement读取数据时每次从数据库中读取数据的条数-->
+        <property name="jdbc.fetch_size">100</property>
+        <property name="jdbc.batch_size">30</property>
+
         <!--        实体类映射文件-->
         <mapping resource="com/yj/hibernate/domain/Address.hbm.xml"/>
         <mapping class="com.yj.hibernate.domain.Address"/>
