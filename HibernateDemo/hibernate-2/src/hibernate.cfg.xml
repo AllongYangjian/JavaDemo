@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate?serverTimezone=UTC</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">allong</property>
+
+        <!-- DB schema will be updated if needed -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <!--        设置数据库的隔离级别-->
+<!--        <property name="connection.isolation">2</property>-->
+
+        <!--        C3P0配置 -->
+        <property name="c3p0.max_size">10</property>
+        <property name="c3p0.min_size">5</property>
+        <property name="c3p0.acquire_increment">2</property>
+        <property name="c3p0.idle_test_period">2000</property>
+        <property name="c3p0.timeout">2000</property>
+        <property name="c3p0.max_statements">10</property>
+
+        <!--        设置jdbc的statement读取数据时每次从数据库中读取数据的条数-->
+        <property name="jdbc.fetch_size">100</property>
+        <property name="jdbc.batch_size">30</property>
+
+        <!--        实体类映射文件-->
+        <mapping resource="com/yj/hibernate/domain/Address.hbm.xml"/>
+        <mapping class="com.yj.hibernate.domain.Address"/>
+        <mapping resource="com/yj/hibernate/domain/News.hbm.xml"/>
+        <mapping class="com.yj.hibernate.domain.News"/>
+
+
+    </session-factory>
+</hibernate-configuration>
