@@ -33,6 +33,7 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
 
     private RsaKeyProperties prop;
 
+    private AuthenticationManager manager;
 
     public JwtVerifyFilter(AuthenticationManager authenticationManager, RsaKeyProperties prop) {
         super(authenticationManager);
