@@ -43,5 +43,10 @@
         <mapping class="com.yj.hibernate.n212n.Order1"/>
         <mapping resource="com/yj/hibernate/n212n/Customer1.hbm.xml"/>
         <mapping resource="com/yj/hibernate/n212n/Order1.hbm.xml"/>
+
+        <mapping class="com.yj.hibernate.foreign.Department"/>
+        <mapping class="com.yj.hibernate.foreign.Manager"/>
+        <mapping resource="com/yj/hibernate/foreign/Department.hbm.xml"/>
+        <mapping resource="com/yj/hibernate/foreign/Manager.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

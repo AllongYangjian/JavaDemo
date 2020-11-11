@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.yj.hibernate.foreign">
+    <class name="Manager" table="manager">
+        <id name="id" type="java.lang.Integer">
+            <generator class="native"/>
+        </id>
+        <property name="name" type="java.lang.String"/>
+
+        <!--   在对应的数据表中已经有外键了，在当前持久化类中使用one-to-one映射      -->
+        <one-to-one name="dept" class="Department" property-ref="mgr">
+
+        </one-to-one>
+    </class>
+</hibernate-mapping>

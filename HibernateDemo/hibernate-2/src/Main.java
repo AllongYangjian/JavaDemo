@@ -1,6 +1,7 @@
 import com.yj.hibernate.domain.News;
 import com.yj.hibernate.test.TestManyToOne;
 import com.yj.hibernate.test.TestManyToOneToMany;
+import com.yj.hibernate.test.TestOneToOne;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -37,7 +38,9 @@ public class Main {
 
 //        TestManyToOne.test();
 
-        TestManyToOneToMany.test();
+//        TestManyToOneToMany.test();
+
+        TestOneToOne.test();
     }
 
     public static void testNews() {
