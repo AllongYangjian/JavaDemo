@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/hibernate?serverTimezone=UTC</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="192.168.10.217" uuid="42a90707-0762-412c-becc-880f9b78fc4e">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://192.168.10.217:3306/edrtest?serverTimezone=UTC</jdbc-url>
+    </data-source>
   </component>
 </project>
