@@ -86,7 +86,7 @@ public class Customer {
         this.createTime = createTime;
     }
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.REMOVE}) //设置级联删除
     @JoinColumn(name = "customer_id")
     public Set<Items> getItems() {
         return items;

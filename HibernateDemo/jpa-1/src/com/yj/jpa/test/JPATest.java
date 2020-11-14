@@ -2,6 +2,7 @@ package com.yj.jpa.test;
 
 import com.sun.org.apache.xpath.internal.operations.Or;
 import com.yj.jpa.domain.Customer;
+import com.yj.jpa.domain.Items;
 import com.yj.jpa.domain.Orders;
 import org.hibernate.criterion.Order;
 import org.junit.After;
@@ -12,7 +13,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.swing.plaf.IconUIResource;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -177,11 +180,79 @@ public class JPATest {
         manager.remove(customer);
     }
 
+    /**
+     * insert insert insert update update
+     */
     @Test
     public void testOneToMany() {
+        Customer customer = new Customer();
+        customer.setAge(16);
+        customer.setEmail("FFF@allong.com");
+        customer.setLastName("FFF");
+        customer.setBirthday(new Date());
+        customer.setCreateTime(new Date());
 
+        Items items = new Items();
+        items.setName("items-3");
+
+        Items items2 = new Items();
+        items2.setName("items-4");
+
+        customer.getItems().add(items);
+        customer.getItems().add(items2);
+
+        manager.persist(customer);
+        manager.persist(items);
+        manager.persist(items2);
     }
 
+    /**
+     * 默认使用懒加载模式
+     * 使用的时候才去查询
+     */
+    @Test
+    public void testOneToManyGet() {
+        Customer customer = manager.find(Customer.class, 9);
+
+        System.err.println(customer.getId());
+
+        Set<Items> items = customer.getItems();
+        for (Items item : items) {
+            System.err.println(item.toString());
+        }
+    }
+
+    @Test
+    public void testOneToManyUpdate() {
+        Customer customer = manager.find(Customer.class, 9);
+
+        System.err.println(customer.getId());
+
+        Set<Items> items = customer.getItems();
+        for (Items item : items) {
+            item.setName("SB--");
+        }
+    }
+
+    /**
+     * 查询数据
+     * 将外键值为空
+     * 删除数据
+     */
+    @Test
+    public void testOneToManyDelete() {
+        Customer customer = manager.find(Customer.class, 9);
+        manager.remove(customer);
+    }
+
+    /**
+     * 通过设置@OneToMany的cascade属性，来级联删除数据
+     */
+    @Test
+    public void testOneToManyDeleteCascade() {
+        Customer customer = manager.find(Customer.class, 12);
+        manager.remove(customer);
+    }
 
     @After
     public void destroy() {
