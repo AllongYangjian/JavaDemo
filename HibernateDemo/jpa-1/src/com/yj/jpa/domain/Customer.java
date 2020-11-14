@@ -33,6 +33,8 @@ public class Customer {
 
     private Set<Items> items = new HashSet<>();
 
+    private Set<Category> categories = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
@@ -94,6 +96,15 @@ public class Customer {
 
     public void setItems(Set<Items> items) {
         this.items = items;
+    }
+
+    @OneToMany(mappedBy = "customer")//指定由多的一方维护关联关系
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

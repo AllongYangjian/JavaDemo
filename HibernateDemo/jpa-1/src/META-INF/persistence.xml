@@ -6,6 +6,7 @@
         <class>com.yj.jpa.domain.Customer</class>
         <class>com.yj.jpa.domain.Orders</class>
         <class>com.yj.jpa.domain.Items</class>
+        <class>com.yj.jpa.domain.Category</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql:///jpa?serverTimezone=UTC"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.cj.jdbc.Driver"/>

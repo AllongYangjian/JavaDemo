@@ -254,9 +254,13 @@ public class JPATest {
         manager.remove(customer);
     }
 
+    @Test
+    public void testDuplicateOneToMany(){
+        
+    }
+
     @After
     public void destroy() {
-
         transaction.commit();
         manager.close();
         factory.close();
