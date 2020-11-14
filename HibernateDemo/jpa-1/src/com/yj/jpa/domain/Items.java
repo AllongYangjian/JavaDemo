@@ -1,6 +1,8 @@
 package com.yj.jpa.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -20,6 +22,8 @@ public class Items {
 
     private String name;
 
+    private Set<Category> categories = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
@@ -36,6 +40,18 @@ public class Items {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "cate_item",
+            joinColumns = {@JoinColumn(name = "item_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id",referencedColumnName = "id")})
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

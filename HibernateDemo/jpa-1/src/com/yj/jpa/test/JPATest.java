@@ -1,6 +1,7 @@
 package com.yj.jpa.test;
 
 import com.sun.org.apache.xpath.internal.operations.Or;
+import com.yj.jpa.domain.Category;
 import com.yj.jpa.domain.Customer;
 import com.yj.jpa.domain.Items;
 import com.yj.jpa.domain.Orders;
@@ -256,7 +257,40 @@ public class JPATest {
 
     @Test
     public void testDuplicateOneToMany(){
-        
+
+    }
+
+    @Test
+    public void testManyToMany(){
+        Category category = new Category();
+        category.setName("c-1");
+
+        Category category1 = new Category();
+        category1.setName("C--2");
+
+        Items items = new Items();
+        items.setName("item-1");
+
+        Items item2 = new Items();
+        item2.setName("Item-2");
+
+        category.getItems().add(items);
+        category.getItems().add(item2);
+
+        category1.getItems().add(item2);
+        category1.getItems().add(items);
+
+        items.getCategories().add(category);
+        items.getCategories().add(category1);
+        item2.getCategories().add(category);
+        item2.getCategories().add(category1);
+
+        manager.persist(category);
+        manager.persist(category1);
+        manager.persist(items);
+        manager.persist(item2);
+
+
     }
 
     @After

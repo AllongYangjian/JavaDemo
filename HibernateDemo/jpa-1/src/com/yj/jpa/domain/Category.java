@@ -1,6 +1,8 @@
 package com.yj.jpa.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -21,6 +23,8 @@ public class Category {
     private String name;
 
     private Customer customer;
+
+    private Set<Items> items = new HashSet<>();
 
     @Id
     @GeneratedValue
@@ -48,5 +52,14 @@ public class Category {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    @ManyToMany(mappedBy = "categories")
+    public Set<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Items> items) {
+        this.items = items;
     }
 }
