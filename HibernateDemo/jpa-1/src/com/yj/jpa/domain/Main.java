@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.Date;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -37,6 +38,8 @@ public class Main {
         customer.setAge(12);
         customer.setEmail("yj@allong.com");
         customer.setLastName("yang");
+        customer.setBirthday(new Date());
+        customer.setCreateTime(new Date());
 
         manager.persist(customer);
         //提交事务

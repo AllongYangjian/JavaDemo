@@ -1,6 +1,9 @@
 package com.yj.jpa.domain;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -23,6 +26,12 @@ public class Customer {
     private String email;
 
     private int age;
+
+    private Date birthday;
+
+    private Date createTime;
+
+    private Set<Items> items = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,5 +66,46 @@ public class Customer {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Temporal(TemporalType.DATE)
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "customer_id")
+    public Set<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Items> items) {
+        this.items = items;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", birthday=" + birthday +
+                ", createTime=" + createTime +
+                ", items=" + items +
+                '}';
     }
 }
