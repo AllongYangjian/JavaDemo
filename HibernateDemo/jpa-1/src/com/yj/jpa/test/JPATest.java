@@ -10,12 +10,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import javax.swing.plaf.IconUIResource;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -256,12 +254,12 @@ public class JPATest {
     }
 
     @Test
-    public void testDuplicateOneToMany(){
+    public void testDuplicateOneToMany() {
 
     }
 
     @Test
-    public void testManyToMany(){
+    public void testManyToMany() {
         Category category = new Category();
         category.setName("c-1");
 
@@ -289,7 +287,32 @@ public class JPATest {
         manager.persist(category1);
         manager.persist(items);
         manager.persist(item2);
+    }
 
+    @Test
+    public void testJPQL() {
+        String jqpl = "from Customer c where c.age > :age";
+        Query query = manager.createQuery(jqpl);
+        query.setParameter("age", 12);
+
+        List<Customer> customers = query.getResultList();
+        System.err.println(customers.toString());
+    }
+
+    @Test
+    public void testPartialProperty() {
+        String jpql = "select new Customer(c.lastName,c.age ) from Customer c where c.id > :id";
+        List result = manager.createQuery(jpql).setParameter("id", 2).getResultList();
+        System.err.println(result);
+
+    }
+
+    @Test
+    public void testNativeQuery() {
+        String sql = "select * from customer where id = :id";
+        Query query = manager.createNativeQuery(sql).setParameter("id", 1);
+        Object customer =  query.getSingleResult();
+        System.err.println(customer.toString());
 
     }
 

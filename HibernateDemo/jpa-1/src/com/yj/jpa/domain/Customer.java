@@ -35,6 +35,14 @@ public class Customer {
 
     private Set<Category> categories = new HashSet<>();
 
+    public Customer(String lastName, int age) {
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    public Customer() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
