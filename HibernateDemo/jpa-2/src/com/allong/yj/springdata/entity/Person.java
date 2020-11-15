@@ -1,6 +1,5 @@
 package com.allong.yj.springdata.entity;
 
-import org.springframework.data.jpa.repository.EntityGraph;
 
 import javax.persistence.*;
 import java.util.Date;
