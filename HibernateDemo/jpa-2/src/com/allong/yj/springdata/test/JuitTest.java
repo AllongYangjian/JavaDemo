@@ -1,11 +1,15 @@
 package com.allong.yj.springdata.test;
 
+import com.allong.yj.springdata.dao.PersonPageAndSortRepository;
 import com.allong.yj.springdata.dao.PersonRepository;
+import com.allong.yj.springdata.dao.PersonRepository2;
 import com.allong.yj.springdata.entity.Person;
 import com.allong.yj.springdata.service.PersonService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
@@ -29,11 +33,15 @@ public class JuitTest {
     private static PersonRepository repository;
     private static PersonService personService;
 
+    private static PersonRepository2 personRepository2;
+
     static {
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
         repository = context.getBean(PersonRepository.class);
 
         personService = context.getBean(PersonService.class);
+
+        personRepository2 = context.getBean(PersonRepository2.class);
     }
 
     @Test
@@ -119,6 +127,39 @@ public class JuitTest {
 
     @Test
     public void testUpdate() {
-        personService.updatePerson("TEST",1);
+        personService.updatePerson("TEST", 1);
+    }
+
+    /**
+     * CRUD接口批量保存操作
+     */
+    @Test
+    public void testCrudRepositorySave() {
+        List<Person> personList = new ArrayList<>();
+        for (int x = 'a'; x < 'z'; x++) {
+            Person person = new Person();
+            person.setBirth(new Date());
+            person.setEmail((char) x + "" + (char) x + "@qq.com");
+            person.setLastName((char) x + "" + (char) x);
+
+            personList.add(person);
+        }
+        personRepository2.saveAll(personList);
+    }
+
+    @Test
+    public void testPagingAndSortRepository(){
+        PersonPageAndSortRepository repository = context.getBean(PersonPageAndSortRepository.class);
+        int pageNo = 3-1;
+        int pageSize = 6;
+        PageRequest request =  PageRequest.of(pageNo,pageSize);
+        Page<Person> page = repository.findAll(request);
+        System.err.println("总记录数："+page.getTotalElements());
+        System.err.println("当前第几页："+(page.getNumber()+1));
+        System.err.println("总页数："+page.getTotalPages());
+        System.err.println("当前页面List:"+page.getContent());
+        System.err.println("当前页面记录数："+page.getNumberOfElements());
+
+
     }
 }
