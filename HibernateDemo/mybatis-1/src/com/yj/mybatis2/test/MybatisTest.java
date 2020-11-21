@@ -1,8 +1,8 @@
-package com.yj.mybatis.test;
+package com.yj.mybatis2.test;
 
 
-import com.yj.mybatis.domain.Employee;
-import com.yj.mybatis.mapper.EmployeeMapper;
+import com.yj.mybatis2.domain.Employee;
+import com.yj.mybatis2.mapper.EmployeeMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

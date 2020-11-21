@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yj.mybatis.mapper.EmployeeMapper">
+<mapper namespace="com.yj.mybatis2.mapper.EmployeeMapper">
 <!--        Employee findById(Integer id);-->
-    <select id="findById" resultType="com.yj.mybatis.domain.Employee">
+    <select id="findById" resultType="com.yj.mybatis2.domain.Employee">
         select * from employee where id = #{id};
   </select>
 </mapper>

@@ -1,6 +1,6 @@
-package com.yj.mybatis.mapper;
+package com.yj.mybatis2.mapper;
 
-import com.yj.mybatis.domain.Employee;
+import com.yj.mybatis2.domain.Employee;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -15,4 +15,10 @@ import com.yj.mybatis.domain.Employee;
 public interface EmployeeMapper {
 
     Employee findById(Integer id);
+
+    boolean addEmp(Employee employee);
+
+    boolean updateEmp(Employee employee);
+
+    void deleteEmp(Integer id);
 }

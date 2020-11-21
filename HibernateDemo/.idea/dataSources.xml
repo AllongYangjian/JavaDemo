@@ -13,5 +13,12 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://192.168.10.217:3306/edrtest?serverTimezone=UTC</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="mybatis@localhost" uuid="ba97e57c-5175-4db6-8416-80be6228a89e">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <remarks>mybatis数据库</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/mybatis?serverTimezone=UTC</jdbc-url>
+    </data-source>
   </component>
 </project>

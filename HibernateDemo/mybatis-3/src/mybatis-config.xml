@@ -17,12 +17,12 @@
             但是如果包下还存在子包，同时类名重复，则可以使用
             @Alias 注解指定新的别名
         -->
-        <package name="com.yj.mybatis2.domain"/>
+        <package name="com.allong.mybatis3.domain"/>
     </typeAliases>
     <!--    环境标签
         environment 单个环境标签 通过 environments的default来指定使用哪种环境
     -->
-    <environments default="test">
+    <environments default="development">
 
         <environment id="test">
 <!--
@@ -49,6 +49,6 @@ type:
         </environment>
     </environments>
     <mappers>
-        <mapper resource="com/yj/mybatis2/mapper/EmployeeMapper.xml"/>
+        <mapper resource="com/allong/mybatis3/mapper/EmployeeMapper.xml"/>
     </mappers>
 </configuration>

@@ -1,6 +1,4 @@
-package com.yj.mybatis.domain;
-
-import org.apache.ibatis.type.Alias;
+package com.yj.mybatis2.domain;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -12,7 +10,6 @@ import org.apache.ibatis.type.Alias;
  * <author>          <time>          <version>          <desc>
  * yangjian       2020/11/17 21:30        1.0              描述
  */
-@Alias("Employee")
 public class Employee {
 
     private Integer id;
@@ -57,14 +54,6 @@ public class Employee {
         this.address = address;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     @Override
     public String toString() {
         return "Employee{" +
@@ -72,7 +61,14 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
-                ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

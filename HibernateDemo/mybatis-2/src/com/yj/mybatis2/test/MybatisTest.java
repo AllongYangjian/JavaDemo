@@ -1,8 +1,8 @@
-package com.yj.mybatis.test;
+package com.yj.mybatis2.test;
 
 
-import com.yj.mybatis.domain.Employee;
-import com.yj.mybatis.mapper.EmployeeMapper;
+import com.yj.mybatis2.domain.Employee;
+import com.yj.mybatis2.mapper.EmployeeMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -62,6 +62,18 @@ public class MybatisTest {
         System.err.println(mapper.getClass().getName());
         Employee employee = mapper.findById(1);
         System.err.println(employee.toString());
+    }
+
+    @Test
+    public void testSave() {
+        EmployeeMapper mapper = session.getMapper(EmployeeMapper.class);
+        Employee employee = new Employee();
+        employee.setName("杨建");
+        employee.setAge(28);
+        employee.setAddress("浙江杭州");
+        employee.setLastName("键");
+        boolean result = mapper.addEmp(employee);
+        System.err.println("更新" + (result ? "成功" : "失败"));
     }
 
     @After
