@@ -127,7 +127,8 @@ public class Mybatis3Test {
     @Test
     public void testUnionMapWithAssociation2() {
         Employee employee = mapperPlus.findByIdStep(1);
-        System.err.println(employee.toString());
+        System.err.println(employee.getAddress());
+//        System.err.println(employee.toString());
     }
 
     @After

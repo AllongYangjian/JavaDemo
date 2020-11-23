@@ -5,10 +5,14 @@
 <configuration>
 
     <properties resource="db.properties"/>
-<!--    <properties resource="c3p0.properties"/>-->
+    <!--    <properties resource="c3p0.properties"/>-->
     <settings>
         <!--        设置将驼峰命名映射成下划线-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--        开启懒加载-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+<!--        -->
+        <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     <typeAliases>
         <!--        起别名-->
@@ -25,9 +29,9 @@
     <environments default="development">
 
         <environment id="test">
-<!--
-type:
--->
+            <!--
+            type:
+            -->
             <transactionManager type="JDBC"/>
             <dataSource type="com.yj.mybatis2.config.MyDataSource">
                 <property name="driver" value="${c3p0.driverClass}"/>
