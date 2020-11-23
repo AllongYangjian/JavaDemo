@@ -77,4 +77,19 @@
     <delete id="deleteEmp" parameterType="java.lang.Integer">
         delete from employee where  id = #{id}
     </delete>
+
+<!--    List<Employee> selectAll();-->
+    <select id="selectAll" resultType="com.allong.mybatis3.domain.Employee">
+        select * from employee;
+    </select>
+
+<!--    Map<String, Object> findByIdResultMap(Integer id);-->
+    <select id="findByIdResultMap" resultType="map">
+        select * from employee where id = ${id};
+    </select>
+
+<!--    Map<Integer,Employee> findMapKey(Integer id);-->
+    <select id="findMapKey" resultType="com.allong.mybatis3.domain.Employee">
+        select * from employee where id = #{id};
+    </select>
 </mapper>

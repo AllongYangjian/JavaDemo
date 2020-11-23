@@ -3,6 +3,7 @@ package com.allong.mybatis3.test;
 
 import com.allong.mybatis3.domain.Employee;
 import com.allong.mybatis3.mapper.EmployeeMapper;
+import com.allong.mybatis3.mapper.EmployeeMapperPlus;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -28,6 +31,7 @@ public class Mybatis3Test {
     private static SqlSessionFactory factory;
     private static SqlSession session;
     private static EmployeeMapper mapper;
+    private static EmployeeMapperPlus mapperPlus;
 
     static {
         String resource = "mybatis-config.xml";
@@ -42,6 +46,7 @@ public class Mybatis3Test {
     public void init() {
         session = factory.openSession();
         mapper = session.getMapper(EmployeeMapper.class);
+        mapperPlus = session.getMapper(EmployeeMapperPlus.class);
     }
 
     /**
@@ -56,7 +61,7 @@ public class Mybatis3Test {
         employee.setAddress("浙江杭州");
         employee.setLastName("键");
         boolean result = mapper.addEmp(employee);
-        System.err.println("保存" + (result ? "成功" : "失败")+employee.getId());
+        System.err.println("保存" + (result ? "成功" : "失败") + employee.getId());
     }
 
     @Test
@@ -75,6 +80,54 @@ public class Mybatis3Test {
     public void testDelete() {
         long id = mapper.deleteEmp(4);
         System.err.println("delete record index " + id);
+    }
+
+    @Test
+    public void testResultList() {
+        List<Employee> results = mapper.selectAll();
+        System.err.println(results.toString());
+    }
+
+    @Test
+    public void testResultMap() {
+        Map<String, Object> maps = mapper.findByIdResultMap(1);
+        System.err.println(maps.toString());
+    }
+
+    @Test
+    public void testMapKeyValueEmployee() {
+        Map<Integer, Employee> maps = mapper.findMapKey(1);
+        System.err.println(maps.toString());
+    }
+
+    @Test
+    public void testResultMapPlus() {
+        Employee employee = mapperPlus.findById(1);
+        System.err.println(employee.toString());
+    }
+
+    @Test
+    public void testUnionMap() {
+        Employee employee = mapperPlus.findUnionProperty(1);
+        System.err.println(employee.toString());
+    }
+
+    /**
+     * 通过 association 属性来指定关联复杂属性的名称和类型
+     * property:属性名
+     * javaType:类名称
+     */
+    @Test
+    public void testUnionMapWithAssociation() {
+        Employee employee = mapperPlus.findUnionProperty2(1);
+        System.err.println(employee.toString());
+    }
+
+
+    @Test
+    public void testUnionMapWithAssociation2() {
+        Employee employee = mapperPlus.findByIdStep(1);
+        System.err.println(employee.toString());
     }
 
     @After

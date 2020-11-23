@@ -25,6 +25,8 @@ public class Employee {
 
     private String lastName;
 
+    private Department department;
+
     public Integer getId() {
         return id;
     }
@@ -65,6 +67,14 @@ public class Employee {
         this.lastName = lastName;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -73,6 +83,7 @@ public class Employee {
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", department=" + department +
                 '}';
     }
 }

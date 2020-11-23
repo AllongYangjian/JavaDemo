@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.allong.mybatis3.mapper.EmployeeMapperPlus">
+
+
+    <resultMap id="map1" type="com.allong.mybatis3.domain.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="address" column="address"/>
+        <result property="lastName" column="last_name"/>
+    </resultMap>
+
+    <!--    Employee findById(Integer id);-->
+    <select id="findById" resultMap="map1">
+        select * from employee where  id = #{id};
+    </select>
+
+    <resultMap id="emps" type="com.allong.mybatis3.domain.Employee" extends="map1">
+        <result property="department.id" column="deptId"/>
+        <result property="department.name" column="deptName"/>
+        <result property="department.desc" column="deptDesc"/>
+    </resultMap>
+
+    <!--    Employee findUnionProperty(Integer id);-->
+    <!--
+     SELECT e.id,e.name,e.age,e.address, d.id deptId,d.name deptName,d.desc deptDesc FROM
+             employee e,department d WHERE e.dept_id = d.id AND e.id = 1;
+    -->
+    <select id="findUnionProperty" resultMap="emps">
+        select e.id,e.name,e.age,e.address,e.last_name, d.id deptId,d.name deptName,d.desc deptDesc from
+         employee e,department d where e.dept_id = d.id and e.id = #{id};
+    </select>
+
+    <resultMap id="emps2" type="com.allong.mybatis3.domain.Employee" extends="map1">
+        <association property="department" javaType="com.allong.mybatis3.domain.Department">
+            <id property="id" column="deptId"/>
+            <id property="name" column="deptName"/>
+            <id property="desc" column="deptDesc"/>
+        </association>
+    </resultMap>
+
+    <!--       Employee findUnionProperty2(Integer id);-->
+    <select id="findUnionProperty2" resultMap="emps2">
+        select e.id,e.name,e.age,e.address,e.last_name, d.id deptId,d.name deptName,d.desc deptDesc from
+         employee e,department d where e.dept_id = d.id and e.id = #{id};
+    </select>
+
+    <resultMap id="emp3" type="com.allong.mybatis3.domain.Employee" extends="map1">
+        <association property="department" select="com.allong.mybatis3.mapper.DepartmentMapper.findById"
+                     column="dept_id">
+        </association>
+    </resultMap>
+
+    <!--    association 分布式查询-->
+    <!--    Employee findByIdStep(Integer id);-->
+    <select id="findByIdStep" resultMap="emp3">
+        select * from employee where  id = #{id};
+    </select>
+</mapper>

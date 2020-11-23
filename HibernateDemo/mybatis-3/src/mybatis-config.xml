@@ -50,5 +50,7 @@ type:
     </environments>
     <mappers>
         <mapper resource="com/allong/mybatis3/mapper/EmployeeMapper.xml"/>
+        <mapper resource="com/allong/mybatis3/mapper/EmployeeMapperPlus.xml"/>
+        <mapper resource="com/allong/mybatis3/mapper/DepartmentMapper.xml"/>
     </mappers>
 </configuration>

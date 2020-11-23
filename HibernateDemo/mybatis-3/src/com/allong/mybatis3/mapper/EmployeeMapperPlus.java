@@ -16,27 +16,13 @@ import java.util.Map;
  * <author>          <time>          <version>          <desc>
  * yangjian       2020/11/17 21:38        1.0              描述
  */
-public interface EmployeeMapper {
+public interface EmployeeMapperPlus {
 
     Employee findById(Integer id);
 
-    /**
-     * nmybatis 允许返回值直接定义为 Integer Long Boolean void 类型
-     *
-     * @param employee
-     * @return
-     */
-    boolean addEmp(Employee employee);
+    Employee findUnionProperty(Integer id);
 
-    boolean updateEmp(Employee employee);
+    Employee findUnionProperty2(Integer id);
 
-    long deleteEmp(Integer id);
-
-    List<Employee> selectAll();
-
-    Map<String, Object> findByIdResultMap(Integer id);
-
-    //指定哪个列作为map的key
-    @MapKey("id")
-    Map<Integer, Employee> findMapKey(Integer id);
+    Employee findByIdStep(Integer id);
 }
