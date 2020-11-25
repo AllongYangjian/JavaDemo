@@ -25,4 +25,17 @@ public interface EmployeeMapperPlus {
     Employee findUnionProperty2(Integer id);
 
     Employee findByIdStep(Integer id);
+
+    List<Employee> findEmployeeByDeptId(Integer deptId);
+
+    /**
+     * 通过鉴别器来设置查询条件
+     *
+     * @param id
+     * @return
+     */
+    Employee findWithDiscriminator(Integer id);
+
+
+
 }

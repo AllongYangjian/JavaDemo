@@ -1,5 +1,7 @@
 package com.allong.mybatis3.domain;
 
+import java.util.List;
+
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
  * FileName: Department
@@ -17,6 +19,8 @@ public class Department {
     private String name;
 
     private String desc;
+
+    private List<Employee> emps;
 
     public Integer getId() {
         return id;
@@ -42,12 +46,21 @@ public class Department {
         this.desc = desc;
     }
 
+    public List<Employee> getEmps() {
+        return emps;
+    }
+
+    public void setEmps(List<Employee> emps) {
+        this.emps = emps;
+    }
+
     @Override
     public String toString() {
         return "Department{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", desc='" + desc + '\'' +
+                ", emps=" + emps +
                 '}';
     }
 }

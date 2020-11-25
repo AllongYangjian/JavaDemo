@@ -1,7 +1,9 @@
 package com.allong.mybatis3.test;
 
 
+import com.allong.mybatis3.domain.Department;
 import com.allong.mybatis3.domain.Employee;
+import com.allong.mybatis3.mapper.DepartmentMapper;
 import com.allong.mybatis3.mapper.EmployeeMapper;
 import com.allong.mybatis3.mapper.EmployeeMapperPlus;
 import org.apache.ibatis.io.Resources;
@@ -126,9 +128,29 @@ public class Mybatis3Test {
 
     @Test
     public void testUnionMapWithAssociation2() {
-        Employee employee = mapperPlus.findByIdStep(1);
-        System.err.println(employee.getAddress());
-//        System.err.println(employee.toString());
+        Employee employee = mapperPlus.findByIdStep(5);
+//        System.err.println(employee.getAddress());
+        System.err.println(employee.toString());
+    }
+
+    @Test
+    public void testDepartment() {
+        DepartmentMapper mapper = session.getMapper(DepartmentMapper.class);
+        Department department = mapper.findByIdPlus(1);
+        System.err.println(department.toString());
+    }
+
+    /**
+     * 分布式查询查询科室员工列表
+     * 1、先查询科室
+     * 2、在查询员工
+     */
+    @Test
+    public void testDepartmentStep() {
+        DepartmentMapper mapper = session.getMapper(DepartmentMapper.class);
+
+        Department department = mapper.findByIdStep(1);
+        System.err.println(department.toString());
     }
 
     @After
