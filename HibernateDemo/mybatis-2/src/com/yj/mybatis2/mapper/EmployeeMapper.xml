@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yj.mybatis2.mapper.EmployeeMapper">
+
+    <!--        Employee findById(Integer id);-->
+    <select id="findById" resultType="Employee">
+        select * from employee where id = #{id};
+    </select>
+
+    <insert id="addEmp" parameterType="com.yj.mybatis2.domain.Employee">
+        insert into
+            employee
+            (
+                name,
+                age,
+                address,
+                last_name
+            )
+            values
+            (
+                #{name},
+                #{age},
+                #{address},
+                #{lastName}
+            )
+    </insert>
+
+    <update id="updateEmp" parameterType="com.yj.mybatis2.domain.Employee">
+        update
+            employee
+        set
+            [name] = #{name},
+            age = #{age},
+            address = #{address},
+            last_name = #{lastName}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteEmp" parameterType="java.lang.Integer">
+        delete from employee where  id = #{id}
+    </delete>
+</mapper>

@@ -34,7 +34,19 @@
         <mapping class="com.yj.hibernate.domain.Address"/>
         <mapping resource="com/yj/hibernate/domain/News.hbm.xml"/>
         <mapping class="com.yj.hibernate.domain.News"/>
+        <mapping class="com.yj.hibernate.n21.Customer"/>
+        <mapping class="com.yj.hibernate.n21.Order"/>
+        <mapping resource="com/yj/hibernate/n21/Customer.hbm.xml"/>
+        <mapping resource="com/yj/hibernate/n21/Order.hbm.xml"/>
 
+        <mapping class="com.yj.hibernate.n212n.Customer1"/>
+        <mapping class="com.yj.hibernate.n212n.Order1"/>
+        <mapping resource="com/yj/hibernate/n212n/Customer1.hbm.xml"/>
+        <mapping resource="com/yj/hibernate/n212n/Order1.hbm.xml"/>
 
+        <mapping class="com.yj.hibernate.foreign.Department"/>
+        <mapping class="com.yj.hibernate.foreign.Manager"/>
+        <mapping resource="com/yj/hibernate/foreign/Department.hbm.xml"/>
+        <mapping resource="com/yj/hibernate/foreign/Manager.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
