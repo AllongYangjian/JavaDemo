@@ -25,6 +25,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        UserDetails details = userMapper.findUser(s);
+        System.err.println(details.toString());
         return userMapper.findUser(s);
     }
 }
