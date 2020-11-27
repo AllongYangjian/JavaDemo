@@ -10,6 +10,7 @@
         <module name="oauth2server" />
         <module name="oauth2resource" />
         <module name="common" />
+        <module name="spring-security-jwt-enhance" />
         <module name="springjwtrsamybatis" />
         <module name="spring-security-demo" />
         <module name="resource" />
@@ -30,6 +31,7 @@
       <module name="spring-security-demo" target="1.8" />
       <module name="spring-security-enhance" target="1.8" />
       <module name="spring-security-jsp" target="1.8" />
+      <module name="spring-security-jwt-enhance" target="1.8" />
       <module name="spring-security-jwt-rsa" target="1.8" />
       <module name="springjwtrsamybatis" target="1.8" />
     </bytecodeTargetLevel>
@@ -47,6 +49,7 @@
       <module name="spring-security-demo" options="-parameters" />
       <module name="spring-security-enhance" options="-parameters" />
       <module name="spring-security-jsp" options="-parameters" />
+      <module name="spring-security-jwt-enhance" options="-parameters" />
       <module name="spring-security-jwt-rsa" options="-parameters" />
       <module name="springjwtrsamybatis" options="-parameters" />
     </option>
