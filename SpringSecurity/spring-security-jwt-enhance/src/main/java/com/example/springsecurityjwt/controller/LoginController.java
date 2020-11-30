@@ -3,6 +3,8 @@ package com.example.springsecurityjwt.controller;
 import com.example.springsecurityjwt.domain.SysRole;
 import com.example.springsecurityjwt.domain.SysUser;
 import com.example.springsecurityjwt.utils.JwtUtils;
+import com.example.springsecurityjwt.utils.RsaProperties;
+import com.example.springsecurityjwt.utils.RsaUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,9 @@ public class LoginController {
     @Autowired
     private AuthenticationManager manager;
 
+    @Autowired
+    private RsaProperties rsaProperties;
+
     @PostMapping
     public ResponseEntity<Object> login(String username, String password) {
         System.err.println(username + "," + password);
@@ -50,7 +55,7 @@ public class LoginController {
             sysUser.setRoles((List<SysRole>) authenticate.getAuthorities());
 
             //返回客户端调用的token
-            String t = JwtUtils.generatorToken(sysUser);
+            String t = JwtUtils.generatorToken(sysUser, rsaProperties.getPrivateKey());
             map.put("code", 200);
             map.put("status", "登录成功");
             map.put("token", "Bearer "+t);

@@ -27,23 +27,23 @@ public class RsaUtils {
         RsaKeyPair keyPair = generatorKey();
         System.out.println("公钥：" + keyPair.getPublicKey());
         System.out.println("私钥：" + keyPair.getPrivateKey());
-        System.out.println("\n");
-        test1(keyPair);
-        System.out.println("\n");
-        test2(keyPair);
-        System.out.println("\n");
-        try {
-            test3(keyPair);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        System.out.println("\n");
+//        test1(keyPair);
+//        System.out.println("\n");
+//        test2(keyPair);
+//        System.out.println("\n");
+//        try {
+//            test3(keyPair);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
 
-        System.out.println("\n");
-        try {
-            test4(keyPair);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+//        System.out.println("\n");
+//        try {
+//            test4(keyPair);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         System.out.println("\n");
     }
@@ -136,6 +136,18 @@ public class RsaUtils {
         return new RsaKeyPair(publicKeyString, privateKeyString);
     }
 
+    public static PrivateKey getPrivateKey(String privateKeyText) throws Exception {
+        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKeyText));
+        KeyFactory factory = KeyFactory.getInstance("RSA");
+        return factory.generatePrivate(spec);
+    }
+
+    public static PublicKey getPublicKey(String publicKeyText) throws Exception {
+        X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.decodeBase64(publicKeyText));
+        KeyFactory factory = KeyFactory.getInstance("RSA");
+        return factory.generatePublic(spec);
+    }
+
 
     /**
      * 公钥加密
@@ -146,9 +158,7 @@ public class RsaUtils {
      * @throws Exception
      */
     public static String encryptByPublicKey(String publicKeyText, String text) throws Exception {
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.decodeBase64(publicKeyText));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PublicKey publicKey = keyFactory.generatePublic(spec);
+        PublicKey publicKey = getPublicKey(publicKeyText);
 
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
@@ -166,9 +176,7 @@ public class RsaUtils {
      * @throws Exception
      */
     public static String decryptByPublicKey(String publicKeyText, String text) throws Exception {
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(Base64.decodeBase64(publicKeyText));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PublicKey publicKey = keyFactory.generatePublic(spec);
+        PublicKey publicKey = getPublicKey(publicKeyText);
 
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
@@ -188,9 +196,7 @@ public class RsaUtils {
      * @throws Exception
      */
     public static String encryptByPrivateKey(String privateKeyText, String text) throws Exception {
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKeyText));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PrivateKey privateKey = keyFactory.generatePrivate(spec);
+        PrivateKey privateKey = getPrivateKey(privateKeyText);
 
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
@@ -208,9 +214,7 @@ public class RsaUtils {
      * @throws Exception
      */
     public static String decryptByPrivateKey(String privateKeyText, String text) throws Exception {
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(Base64.decodeBase64(privateKeyText));
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        PrivateKey privateKey = keyFactory.generatePrivate(spec);
+        PrivateKey privateKey = getPrivateKey(privateKeyText);
 
         Cipher cipher = Cipher.getInstance("RSA");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);

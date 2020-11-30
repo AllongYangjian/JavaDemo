@@ -2,6 +2,8 @@ package com.example.springsecurityjwt.filter;
 
 import com.example.springsecurityjwt.domain.SysUser;
 import com.example.springsecurityjwt.utils.JwtUtils;
+import com.example.springsecurityjwt.utils.RsaProperties;
+import com.example.springsecurityjwt.utils.RsaUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,8 +27,11 @@ import java.io.IOException;
  */
 public class TokenFilter extends BasicAuthenticationFilter {
 
-    public TokenFilter(AuthenticationManager authenticationManager) {
+    private RsaProperties rsaProperties;
+
+    public TokenFilter(AuthenticationManager authenticationManager,RsaProperties properties) {
         super(authenticationManager);
+        this.rsaProperties = properties;
     }
 
     @Override
@@ -34,7 +39,12 @@ public class TokenFilter extends BasicAuthenticationFilter {
         String header = request.getHeader("Authorization");
         if (header != null && header.startsWith("Bearer ")) {
             String token = header.replace("Bearer ", "");
-            SysUser sysUser = JwtUtils.decodeToken(token);
+            SysUser sysUser = null;
+            try {
+                sysUser = JwtUtils.decodeToken(token, rsaProperties.getPublicKey());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if (sysUser != null) {
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(sysUser.getUsername(), null,
                         sysUser.getAuthorities());

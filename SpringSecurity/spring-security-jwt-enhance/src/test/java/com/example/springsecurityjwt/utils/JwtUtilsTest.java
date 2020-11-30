@@ -16,13 +16,16 @@ public class JwtUtilsTest {
     @Autowired
     private UserService service;
 
+    @Autowired
+    private RsaProperties rsaProperties;
+
     @Test
-    public void testJwt() {
+    public void testJwt() throws Exception {
         SysUser user = (SysUser) service.loadUserByUsername("admin");
         user.setPassword(null);
-        String token = JwtUtils.generatorToken(user);
+        String token = JwtUtils.generatorToken(user, rsaProperties.getPrivateKey());
         System.err.println("加密成功：" + token);
-        SysUser user1 = JwtUtils.decodeToken(token);
+        SysUser user1 = JwtUtils.decodeToken(token, rsaProperties.getPublicKey());
         System.err.println("解密成功:" + user1.toString());
     }
 

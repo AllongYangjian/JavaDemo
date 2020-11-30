@@ -11,6 +11,8 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.util.Base64Utils;
 
 import java.security.Key;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -35,16 +37,16 @@ public class JwtUtils {
      * @param object
      * @return
      */
-    public static String generatorToken(Object object) {
+    public static String generatorToken(Object object, PrivateKey privateKey) {
         return Jwts.builder()
                 .claim(KEY, JSON.toJSONString(object))
-                .signWith(key)
+                .signWith(privateKey)
                 .compact();
     }
 
-    public static SysUser decodeToken(String token) {
-        Jws<Claims> claimsJws = Jwts.parser()
-                .setSigningKey(key).parseClaimsJws(token);
+    public static SysUser decodeToken(String token, PublicKey publicKey) {
+        Jws<Claims> claimsJws = Jwts.parserBuilder()
+                .setSigningKey(publicKey).build().parseClaimsJws(token);
 
         Claims body = claimsJws.getBody();
         System.err.println(body.get(KEY).toString());

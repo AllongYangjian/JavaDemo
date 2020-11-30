@@ -2,6 +2,7 @@ package com.example.springsecurityjwt.config;
 
 import com.example.springsecurityjwt.filter.TokenFilter;
 import com.example.springsecurityjwt.service.UserService;
+import com.example.springsecurityjwt.utils.RsaProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RsaProperties properties;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -116,7 +120,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutSuccessUrl("/login")
                 .permitAll()
-                .and().addFilter(new TokenFilter(super.authenticationManager())); //注册过滤器
+                .and().addFilter(new TokenFilter(super.authenticationManager(),properties)); //注册过滤器
 
     }
 }
