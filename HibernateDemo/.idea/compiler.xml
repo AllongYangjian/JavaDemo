@@ -6,15 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="tk-mapper-generator" />
         <module name="tk-mapper1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="tk-mapper-generator" target="1.8" />
       <module name="tk-mapper1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="tk-mapper-generator" options="-parameters" />
       <module name="tk-mapper1" options="-parameters" />
     </option>
   </component>
