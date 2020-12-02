@@ -101,7 +101,7 @@ public class EmployeeMapperTest {
     }
 
     @Test
-    public void deleteByPrimaryKey(){
+    public void EmployeeMapperTest(){
 //        Employee employee = new Employee();
         mapper.deleteByPrimaryKey(3);
     }
