@@ -28,4 +28,10 @@ public class ProductController {
     public String findAll() {
         return "success";
     }
+
+    @Secured("ROLE_PRODUCT")
+    @RequestMapping("/one")
+    public String one(){
+        return "查询单条数据成功";
+    }
 }
