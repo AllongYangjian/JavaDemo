@@ -6,11 +6,19 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: allong
-mybatis:
-  configuration:
-    cache-enabled: true
-    map-underscore-to-camel-case: true
+#mybatis:
+      ##  configuration:
+    ##    cache-enabled: true
+    ##    map-underscore-to-camel-case: true
 #  mapper-locations: classpath:/mybatis/*.xml
 logging:
   level:
     com.example.mybatisplus1: debug
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+#      table-prefix:
+

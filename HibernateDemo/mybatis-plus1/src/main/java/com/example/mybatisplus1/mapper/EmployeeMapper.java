@@ -1,6 +1,7 @@
 package com.example.mybatisplus1.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.example.mybatisplus1.domain.Employee;
 import org.apache.ibatis.annotations.Mapper;
 
