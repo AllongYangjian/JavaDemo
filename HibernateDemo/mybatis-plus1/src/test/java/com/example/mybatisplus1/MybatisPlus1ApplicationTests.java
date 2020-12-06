@@ -2,6 +2,7 @@ package com.example.mybatisplus1;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.mybatisplus1.domain.Employee;
 import com.example.mybatisplus1.mapper.EmployeeMapper;
@@ -70,12 +71,21 @@ class MybatisPlus1ApplicationTests {
     @Test
     public void testByPage() {
         QueryWrapper<Employee> wrapper = new QueryWrapper<Employee>()
-                .gt("age",10);
-        Page<Employee> employeePage = employeeMapper.selectPage(new Page<Employee>(2, 3), wrapper);
-
-
-        List<Employee> records = employeePage.getRecords();
+                .gt("age", 10);
+        Page<Employee> employeePage1 = new Page<>(2, 3);
+        employeeMapper.selectPage(employeePage1, wrapper);
+        List<Employee> records = employeePage1.getRecords();
         records.forEach(item -> System.err.println(item.toString()));
+    }
+
+    @Test
+    void testByPage2() {
+        IPage<Employee> employeePage1 = new Page<>(2, 3);
+        //测试，不添加分页插件 的情况下 ，分页无效
+        employeePage1 = employeeMapper.selectPage(employeePage1, null);
+        List<Employee> records = employeePage1.getRecords();
+        records.forEach(item -> System.err.println(item.toString()));
+
     }
 
 }

@@ -2,6 +2,7 @@ package com.example.mybatisplus1.domain;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-public class Employee extends Model<Employee> {
+public class Employee extends Model<Employee>  {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
