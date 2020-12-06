@@ -6,17 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="tk-mapper-generator" />
+        <module name="mybatis-plus1" />
         <module name="tk-mapper1" />
+        <module name="tk-mapper-generator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="mybatis-plus1" target="1.8" />
       <module name="tk-mapper-generator" target="1.8" />
       <module name="tk-mapper1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="mybatis-plus1" options="-parameters" />
       <module name="tk-mapper-generator" options="-parameters" />
       <module name="tk-mapper1" options="-parameters" />
     </option>
