@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.allong.mybatis3.mapper.EmployeeMapper">
+
+    <!--        Employee findById(Integer id);-->
+    <select id="findById" resultType="Employee">
+        select * from employee where id = #{id};
+    </select>
+
+    <!--
+     useGeneratedKeys:使用自增组件
+     keyProperty:指定主键值赋值的对象
+     -->
+    <insert id="addEmp" parameterType="com.allong.mybatis3.domain.Employee"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into
+            employee
+            (
+                name,
+                age,
+                address,
+                last_name
+            )
+            values
+            (
+                #{name},
+                #{age},
+                #{address},
+                #{lastName}
+            )
+    </insert>
+
+    <insert id="addEmp" parameterType="com.allong.mybatis3.domain.Employee"
+            useGeneratedKeys="true" keyProperty="id" databaseId="oracle">
+        --由于oracle的主键生成策略是从序列表中获取的，因此先查出下次增长的id
+        --然后赋值给需要插入的字段
+        -- selectKey 表示查询id
+        --keyProperty 表示查询后的结果赋值给哪个字段
+        -- order 表示该查询条件的执行顺序 BEFORE 表示先运行
+        -- resultType 表示返回的类型
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+            select employees_seq.nextval from dual;
+        </selectKey>
+        insert into
+        employee
+        (
+        id,
+        name,
+        age,
+        address,
+        last_name
+        )
+        values
+        (
+        #{id},
+        #{name},
+        #{age},
+        #{address},
+        #{lastName}
+        )
+    </insert>
+
+    <update id="updateEmp" parameterType="com.allong.mybatis3.domain.Employee">
+        update
+            employee
+        set
+            name = #{name},
+            age = #{age},
+            address = #{address},
+            last_name = #{lastName}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteEmp" parameterType="java.lang.Integer">
+        delete from employee where  id = #{id}
+    </delete>
+
+<!--    List<Employee> selectAll();-->
+    <select id="selectAll" resultType="com.allong.mybatis3.domain.Employee">
+        select * from employee;
+    </select>
+
+<!--    Map<String, Object> findByIdResultMap(Integer id);-->
+    <select id="findByIdResultMap" resultType="map">
+        select * from employee where id = ${id};
+    </select>
+
+<!--    Map<Integer,Employee> findMapKey(Integer id);-->
+    <select id="findMapKey" resultType="com.allong.mybatis3.domain.Employee">
+        select * from employee where id = #{id};
+    </select>
+</mapper>

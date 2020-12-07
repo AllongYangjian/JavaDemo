@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="db.properties"/>
+<!--    <properties resource="c3p0.properties"/>-->
+    <settings>
+        <!--        设置将驼峰命名映射成下划线-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <!--        起别名-->
+        <!--        <typeAlias type="com.yj.mybatis2.domain.Employee" alias="Employee"/>-->
+        <!--        批量起别名，别名为类名称，不区分大小写
+            但是如果包下还存在子包，同时类名重复，则可以使用
+            @Alias 注解指定新的别名
+        -->
+        <package name="com.yj.mybatis2.domain"/>
+    </typeAliases>
+    <!--    环境标签
+        environment 单个环境标签 通过 environments的default来指定使用哪种环境
+    -->
+    <environments default="test">
+
+        <environment id="test">
+<!--
+type:
+-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="com.yj.mybatis2.config.MyDataSource">
+                <property name="driver" value="${c3p0.driverClass}"/>
+                <property name="url" value="${c3p0.jdbcUrl}"/>
+                <property name="username" value="${c3p0.user}"/>
+                <property name="password" value="${c3p0.password}"/>
+            </dataSource>
+        </environment>
+
+
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="com/yj/mybatis2/mapper/EmployeeMapper.xml"/>
+    </mappers>
+</configuration>
