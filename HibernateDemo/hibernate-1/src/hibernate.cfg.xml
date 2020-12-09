@@ -7,8 +7,6 @@
         <!--        数据库信息-->
         <property name="connection.url">jdbc:mysql://localhost:3306/hibernate?serverTimezone=UTC</property>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.username">root</property>
-        <property name="connection.password">allong</property>
         <!-- DB schema will be updated if needed -->
         <!--        数据库表生成策略-->
         <property name="hibernate.hbm2ddl.auto">update</property>
@@ -23,5 +21,7 @@
         <mapping class="com.yj.hibernate.domain.Address"/>
         <!--     实体类数据库关系映射文件   -->
         <mapping resource="com/yj/hibernate/domain/Address.hbm.xml"/>
+        <mapping resource="com/yj/hibernate/domain/Dept.hbm.xml"/>
+        <mapping class="com.yj.hibernate.domain.Dept"/>
     </session-factory>
 </hibernate-configuration>

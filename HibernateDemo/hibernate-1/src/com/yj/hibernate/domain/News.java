@@ -1,5 +1,7 @@
 package com.yj.hibernate.domain;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +27,6 @@ public class News {
     private Timestamp date;
 
     @Id
-    @Column(name = "id")
     public int getId() {
         return id;
     }

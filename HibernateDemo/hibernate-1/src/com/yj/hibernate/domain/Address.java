@@ -42,6 +42,14 @@ public class Address {
         this.remark = remark;
     }
 
+    public Address(Integer id, String address, String remark) {
+        this.id = id;
+        this.address = address;
+        this.remark = remark;
+    }
+
+    public Address() {
+    }
 
     @Override
     public String toString() {

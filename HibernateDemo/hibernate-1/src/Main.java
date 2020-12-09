@@ -1,3 +1,4 @@
+import com.mysql.cj.jdbc.Driver;
 import com.yj.hibernate.domain.Address;
 import com.yj.hibernate.domain.News;
 import org.hibernate.Session;
@@ -6,7 +7,9 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import java.sql.Timestamp;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Copyright (C), 2015-2020, 杭州奥朗信息科技有限公司
@@ -33,7 +36,12 @@ public class Main {
 
     public static void main(String[] args) {
 //        testNews();
-        testAddress();
+//        testAddress();
+        try {
+            testJdbc();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void testAddress() {
@@ -69,6 +77,44 @@ public class Main {
             transaction.rollback();
         } finally {
             session.close();
+        }
+    }
+
+    public static void testJdbc() throws Exception {
+//        DriverManager.registerDriver(new Driver());
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/hibernate?serverTimezone=UTC",
+                "root", "allong");
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        String sql = "select * from address where id = ?";
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, 1);
+            resultSet = ps.executeQuery();
+            List<Address> list = new ArrayList<>();
+            while (!resultSet.isLast()) {
+                resultSet.next();
+                int id = resultSet.getInt(1);
+                String address = resultSet.getString(2);
+                String remark = resultSet.getString(3);
+                Address address1 = new Address(id, address, remark);
+                list.add(address1);
+
+            }
+            System.err.println(list.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
         }
     }
 }
