@@ -3,6 +3,7 @@ package com.allong.yj.springdata.test;
 import com.allong.yj.springdata.dao.PersonPageAndSortRepository;
 import com.allong.yj.springdata.dao.PersonRepository;
 import com.allong.yj.springdata.dao.PersonRepository2;
+import com.allong.yj.springdata.dao.PersonRepository3;
 import com.allong.yj.springdata.entity.Person;
 import com.allong.yj.springdata.service.PersonService;
 import org.junit.Test;
@@ -10,7 +11,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.*;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class JuitTest {
     private static PersonService personService;
 
     private static PersonRepository2 personRepository2;
+    private static PersonRepository3 personRepository3;
 
     static {
         context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -42,6 +46,7 @@ public class JuitTest {
         personService = context.getBean(PersonService.class);
 
         personRepository2 = context.getBean(PersonRepository2.class);
+        personRepository3 = context.getBean(PersonRepository3.class);
     }
 
     @Test
@@ -148,18 +153,44 @@ public class JuitTest {
     }
 
     @Test
-    public void testPagingAndSortRepository(){
+    public void testPagingAndSortRepository() {
         PersonPageAndSortRepository repository = context.getBean(PersonPageAndSortRepository.class);
-        int pageNo = 3-1;
+        int pageNo = 3 - 1;
         int pageSize = 6;
-        PageRequest request =  PageRequest.of(pageNo,pageSize);
+        PageRequest request = PageRequest.of(pageNo, pageSize);
         Page<Person> page = repository.findAll(request);
-        System.err.println("总记录数："+page.getTotalElements());
-        System.err.println("当前第几页："+(page.getNumber()+1));
-        System.err.println("总页数："+page.getTotalPages());
-        System.err.println("当前页面List:"+page.getContent());
-        System.err.println("当前页面记录数："+page.getNumberOfElements());
+        System.err.println("总记录数：" + page.getTotalElements());
+        System.err.println("当前第几页：" + (page.getNumber() + 1));
+        System.err.println("总页数：" + page.getTotalPages());
+        System.err.println("当前页面List:" + page.getContent());
+        System.err.println("当前页面记录数：" + page.getNumberOfElements());
 
 
+    }
+
+    @Test
+    public void testSpecification() {
+        int pageNo = 3 - 1;
+        int pageSize = 6;
+        PageRequest request = PageRequest.of(pageNo, pageSize);
+        Page<Person> page = personRepository3.findAll(new Specification<Person>() {
+            /**
+             *
+             * @param root 代表查询的实体类
+             * @param criteriaQuery  可与从中获得 Root对象，即告知Criteria 查询哪一个实体类，还可以来添加查询条件，
+             * @param criteriaBuilder 用于创建 Criteria对象的相关工厂，可以从中获取到Predicate对象
+             * @return
+             */
+            @Override
+            public Predicate toPredicate(Root<Person> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+                Path path = root.get("id");
+                return criteriaBuilder.gt(path, 5);
+            }
+        }, request);
+        System.err.println("总记录数：" + page.getTotalElements());
+        System.err.println("当前第几页：" + (page.getNumber() + 1));
+        System.err.println("总页数：" + page.getTotalPages());
+        System.err.println("当前页面List:" + page.getContent());
+        System.err.println("当前页面记录数：" + page.getNumberOfElements());
     }
 }
