@@ -1,4 +1,4 @@
-package com.mengxuegu.blog.util;
+package com.mengxuegu.blog.util.tools;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -10,7 +10,7 @@ import java.util.Base64;
  * FileName: RequestUtil
  * Author:   yangjian
  * Date:     2021/7/15 23:54
- * Description:
+ * Description: 请求参数基础类
  * History:
  * <author>          <time>          <version>          <desc>
  * yangjian       2021/7/15 23:54        1.0              描述
