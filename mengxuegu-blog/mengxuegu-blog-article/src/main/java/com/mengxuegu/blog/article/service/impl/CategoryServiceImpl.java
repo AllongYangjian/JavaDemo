@@ -14,6 +14,8 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -41,8 +43,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         wrapper.orderByDesc("status").orderByAsc("sort");
         IPage<Category> categoryIPage = baseMapper.selectPage(req.getPage(), wrapper);
 
-        return  Result.ok(categoryIPage.getRecords());
+        return Result.ok(categoryIPage.getRecords());
     }
 
+    @Override
+    public boolean updateById(Category entity) {
+        entity.setUpdateDate(new Date());
+        return super.updateById(entity);
+    }
 
+    @Override
+    public List<Category> findAllNormal() {
+        QueryWrapper<Category> wrapper = new QueryWrapper<>();
+        wrapper.eq("status", 1);
+        return baseMapper.selectList(wrapper);
+    }
 }

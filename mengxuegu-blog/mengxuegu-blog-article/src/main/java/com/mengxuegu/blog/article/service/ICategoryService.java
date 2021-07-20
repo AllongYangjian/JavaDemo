@@ -5,6 +5,8 @@ import com.mengxuegu.blog.article.req.CategoryREQ;
 import com.mengxuegu.blog.entities.Category;
 import com.mengxuegu.blog.util.base.Result;
 
+import java.util.List;
+
 /**
  * Copyright (C), 2015-2021, 杭州奥朗信息科技有限公司
  * FileName: ICategoryService
@@ -23,4 +25,6 @@ public interface ICategoryService extends IService<Category> {
      * @return
      */
     Result queryPage(CategoryREQ req);
+
+    List<Category> findAllNormal();
 }

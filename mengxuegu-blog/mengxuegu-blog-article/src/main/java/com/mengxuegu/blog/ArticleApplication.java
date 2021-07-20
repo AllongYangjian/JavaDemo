@@ -1,5 +1,6 @@
 package com.mengxuegu.blog;
 
+import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,6 +16,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * yangjian       2021/7/19 22:32        1.0              描述
  */
 @SpringBootApplication
+@EnableSwagger2Doc
 public class ArticleApplication {
     public static void main(String[] args) {
         SpringApplication.run(ArticleApplication.class,args);
