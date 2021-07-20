@@ -1,6 +1,7 @@
 package com.mengxuegu.blog.entities;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -9,6 +10,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Copyright (C), 2015-2021, 杭州奥朗信息科技有限公司
@@ -61,5 +63,9 @@ public class Category implements Serializable {
      */
     @ApiModelProperty(value = "更新日期")
     private Date updateDate;
+
+    @ApiModelProperty(value = "分类标签信息集合")
+    @TableField(exist = false)
+    private List<Label> labelList;
 
 }

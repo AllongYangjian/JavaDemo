@@ -61,15 +61,22 @@ public class CategoryController {
     }
 
     @ApiOperation("删除类别信息接口")
-    @ApiImplicitParam(name = "id",value = "类别ID",required = true)
+    @ApiImplicitParam(name = "id", value = "类别ID", required = true)
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable String id) {
         return Result.ok(categoryService.removeById(id));
     }
 
-    @ApiOperation("查询所有类别接口")
+    @ApiOperation("查询所有状态正常类别接口")
     @GetMapping("/list")
-    public Result list(){
+    public Result list() {
         return Result.ok(categoryService.findAllNormal());
     }
+
+    @ApiOperation("查询正常分类下的标签列表")
+    @GetMapping("/label/list")
+    public Result findCategoryAndLabel() {
+        return Result.ok(categoryService.findCategoryAndLabel());
+    }
+
 }

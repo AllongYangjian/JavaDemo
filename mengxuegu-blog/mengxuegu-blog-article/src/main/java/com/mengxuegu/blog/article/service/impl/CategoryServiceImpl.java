@@ -58,4 +58,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         wrapper.eq("status", 1);
         return baseMapper.selectList(wrapper);
     }
+
+    @Override
+    public List<Category> findCategoryAndLabel() {
+        return baseMapper.findCategoryAndLabel();
+    }
 }

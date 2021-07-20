@@ -3,6 +3,8 @@ package com.mengxuegu.blog.article.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.mengxuegu.blog.entities.Category;
 
+import java.util.List;
+
 /**
  * Copyright (C), 2015-2021, 杭州奥朗信息科技有限公司
  * FileName: ArticleMapper
@@ -15,4 +17,5 @@ import com.mengxuegu.blog.entities.Category;
  */
 public interface CategoryMapper extends BaseMapper<Category> {
 
+    List<Category> findCategoryAndLabel();
 }

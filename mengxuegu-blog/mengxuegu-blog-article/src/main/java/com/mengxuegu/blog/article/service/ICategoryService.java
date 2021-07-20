@@ -27,4 +27,6 @@ public interface ICategoryService extends IService<Category> {
     Result queryPage(CategoryREQ req);
 
     List<Category> findAllNormal();
+
+    List<Category> findCategoryAndLabel();
 }
