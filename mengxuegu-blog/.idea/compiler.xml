@@ -10,6 +10,7 @@
         <module name="mengxuegublogarticle" />
         <module name="mengxuegublogutil" />
         <module name="mengxuegublogapi" />
+        <module name="mengxuegubloggenerator" />
       </profile>
     </annotationProcessing>
   </component>
@@ -18,6 +19,7 @@
       <module name="mengxuegu-blog" options="" />
       <module name="mengxuegublogapi" options="-parameters" />
       <module name="mengxuegublogarticle" options="-parameters" />
+      <module name="mengxuegubloggenerator" options="-parameters" />
       <module name="mengxuegublogutil" options="-parameters" />
     </option>
   </component>
