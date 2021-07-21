@@ -3,6 +3,7 @@ package com.mengxuegu.blog.article.service.impl;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.mengxuegu.blog.article.req.ArticleListREQ;
 import com.mengxuegu.blog.article.req.ArticleREQ;
 import com.mengxuegu.blog.article.req.ArticleUserREQ;
 import com.mengxuegu.blog.entities.Article;
@@ -117,5 +118,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         }
         article.setViewCount(article.getViewCount() + 1);
         return Result.ok();
+    }
+
+    @Override
+    public Result findListByLabelIdOrCategoryId(ArticleListREQ req) {
+        return Result.ok(baseMapper.findListByLabelIdOrCategoryId(req.getPage(),req.getCategoryId(),req.getLabelId()));
     }
 }

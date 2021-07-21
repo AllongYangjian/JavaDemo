@@ -1,5 +1,6 @@
 package com.mengxuegu.blog.article.api;
 
+import com.mengxuegu.blog.article.req.ArticleListREQ;
 import com.mengxuegu.blog.article.service.IArticleService;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.Api;
@@ -38,5 +39,12 @@ public class ApiArticleController {
     @PutMapping("/{id}")
     public Result updateViewCount(@PathVariable String id) {
         return articleService.updateViewCount(id);
+    }
+
+
+    @ApiOperation("查询公开且已审核的文章列表")
+    @PostMapping("/list")
+    public Result findListByLabelIdOrCategoryId(@RequestBody ArticleListREQ req) {
+        return articleService.findListByLabelIdOrCategoryId(req);
     }
 }

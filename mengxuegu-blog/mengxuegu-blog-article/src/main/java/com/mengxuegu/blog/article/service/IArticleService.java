@@ -1,5 +1,6 @@
 package com.mengxuegu.blog.article.service;
 
+import com.mengxuegu.blog.article.req.ArticleListREQ;
 import com.mengxuegu.blog.article.req.ArticleREQ;
 import com.mengxuegu.blog.article.req.ArticleUserREQ;
 import com.mengxuegu.blog.entities.Article;
@@ -63,4 +64,11 @@ public interface IArticleService extends IService<Article> {
      * @return
      */
     Result updateViewCount(String id);
+
+    /**
+     *根据分类ID或标签id查询文章分页列表
+     * @param req
+     * @return
+     */
+    Result findListByLabelIdOrCategoryId(ArticleListREQ req);
 }

@@ -58,4 +58,21 @@
                 )
             </foreach>
     </insert>
+
+    <select id="findListByLabelIdOrCategoryId" resultType="Article">
+        SELECT
+        DISTINCT m3.*
+        FROM
+        mxg_label m1
+        JOIN mxg_article_label m2 ON m1.id = m2.label_id
+        JOIN mxg_article m3 ON m2.article_id = m3.id
+        WHERE m3.ispublic = 1 AND m3.`status` = 2
+        <if test="req.labelId != null and req.labelId != ''">
+            AND m1.id = #{req.labelId}
+        </if>
+        <if test="req.categoryId !=null and req.categoryId != ''">
+            AND m1.category_id = #{req.categoryId}
+        </if>
+        ORDER BY m3.update_date DESC
+    </select>
 </mapper>

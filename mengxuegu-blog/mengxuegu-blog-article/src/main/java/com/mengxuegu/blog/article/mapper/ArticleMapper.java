@@ -1,5 +1,6 @@
 package com.mengxuegu.blog.article.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Article;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
@@ -32,4 +33,15 @@ public interface ArticleMapper extends BaseMapper<Article> {
      * @return
      */
     boolean saveArticleLabel(@Param("articleId") String articleId,@Param("labelIds") List<String> labelIds);
+
+    /**
+     * 根据分类ID或标签id查询文章分页列表
+     * @param page
+     * @param categoryId
+     * @param labelId
+     * @return
+     */
+    IPage<Article> findListByLabelIdOrCategoryId(IPage<Article> page,
+                                                 @Param("categoryId")String categoryId,
+                                                 @Param("labelId") String labelId);
 }
