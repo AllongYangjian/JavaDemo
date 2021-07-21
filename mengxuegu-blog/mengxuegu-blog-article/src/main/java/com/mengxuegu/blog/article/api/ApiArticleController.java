@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * <author>          <time>          <version>          <desc>
  * yangjian       2021/7/20 23:41        1.0              描述
  */
-@Api(value = "文章管理接口",description = "不需要通过身份认证就能访问")
+@Api(value = "文章管理接口", description = "不需要通过身份认证就能访问")
 @RestController
 @RequestMapping("/api/article")
 public class ApiArticleController {
@@ -27,9 +27,16 @@ public class ApiArticleController {
     private IArticleService articleService;
 
     @ApiOperation("查询文件详情接口")
-    @ApiImplicitParam(name = "id",value = "文章ID",required = true)
+    @ApiImplicitParam(name = "id", value = "文章ID", required = true)
     @GetMapping("/{id}")
-    public Result findArticleAndLabelById(@PathVariable String id){
+    public Result findArticleAndLabelById(@PathVariable String id) {
         return articleService.findArticleAndLabelById(id);
+    }
+
+    @ApiOperation("更新文章浏览次数")
+    @ApiImplicitParam(name = "id", value = "文章ID", required = true)
+    @PutMapping("/{id}")
+    public Result updateViewCount(@PathVariable String id) {
+        return articleService.updateViewCount(id);
     }
 }

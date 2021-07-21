@@ -1,14 +1,21 @@
 package com.mengxuegu.blog.article.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.mengxuegu.blog.article.req.ArticleREQ;
+import com.mengxuegu.blog.article.req.ArticleUserREQ;
 import com.mengxuegu.blog.entities.Article;
 import com.mengxuegu.blog.article.mapper.ArticleMapper;
 import com.mengxuegu.blog.article.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mengxuegu.blog.util.base.Result;
+import com.mengxuegu.blog.util.enums.ArticleStatusEnum;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -36,5 +43,79 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     @Override
     public Result findArticleAndLabelById(String id) {
         return Result.ok(baseMapper.findArticleAndLabelById(id));
+    }
+
+    @Override
+    public Result updateOrSave(Article article) {
+        if (StringUtils.isNotEmpty(article.getId())) {
+            baseMapper.deleteArticleLabel(article.getId());
+            article.setUpdateDate(new Date());
+        }
+        if (article.getIspublic() == 0) {
+            article.setStatus(ArticleStatusEnum.SUCCESS.getCode());
+        } else {
+            article.setStatus(ArticleStatusEnum.WAIT.getCode());
+        }
+        super.saveOrUpdate(article);
+        if (CollectionUtils.isNotEmpty(article.getLabelIds())) {
+            baseMapper.saveArticleLabel(article.getId(), article.getLabelIds());
+        }
+        return Result.ok(article.getId());
+    }
+
+    @Override
+    public Result updateStatus(String id, ArticleStatusEnum statusEnum) {
+        UpdateWrapper<Article> wrapper = new UpdateWrapper<>();
+        wrapper.set("status", statusEnum.getCode())
+                .set("update_date", new Date())
+                .eq("id", id);
+        return Result.ok(update(wrapper));
+    }
+
+    @Override
+    public Result findListByUserIdAndIsPublic(ArticleUserREQ req) {
+        if (StringUtils.isEmpty(req.getUserId())) {
+            return Result.error("无效的用户信息");
+        }
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", req.getUserId());
+        if (req.getIsPublic() != null) {
+            wrapper.eq("ispublic", req.getIsPublic());
+        }
+        return Result.ok(baseMapper.selectPage(req.getPage(), wrapper));
+    }
+
+    @Override
+    public Result updateArticleThumb(String id, int count) {
+        if (count != 1 && count != -1) {
+            return Result.error("无效操作");
+        }
+        if (StringUtils.isEmpty(id)) {
+            return Result.error("无效操作");
+        }
+
+        Article article = getById(id);
+        if (article == null) {
+            return Result.error("文章不存在");
+        }
+        if (article.getThumhup() <= 0 && count == -1) {
+            return Result.error("无效操作");
+        }
+        article.setThumhup(article.getThumhup() + 1);
+        baseMapper.updateById(article);
+        return Result.ok();
+    }
+
+    @Override
+    public Result updateViewCount(String id) {
+        if (StringUtils.isBlank(id)) {
+            return Result.error("无效操作");
+        }
+        Article article = getById(id);
+        if (article == null) {
+            return Result.error("无效操作");
+        }
+        article.setViewCount(article.getViewCount() + 1);
+        return Result.ok();
     }
 }

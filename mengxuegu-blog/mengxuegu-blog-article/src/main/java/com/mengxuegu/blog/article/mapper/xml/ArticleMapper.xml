@@ -39,4 +39,23 @@
             LEFT JOIN mxg_label m3 ON m2.label_id = m3.id
             WHERE m1.id = #{id}
     </select>
+
+    <!--     boolean deleteArticleLabel(@Param("articleId") String articleId);-->
+    <delete id="deleteArticleLabel">
+        delete from mxg_article_label where article_id = #{articleId}
+    </delete>
+
+<!--      boolean saveArticleLabel(@Param("articleId") String articleId,@Param("labelIds") List<String> labelIds);-->
+    <insert id="saveArticleLabel">
+        insert into
+            mxg_article_label (id,article_id,label_id)
+        values
+            <foreach collection="labelIds" item="item" separator=",">
+                (
+                   '${@com.baomidou.mybatisplus.core.toolkit.IdWorker@getId()}' ,
+                    #{articleId},
+                    #{item}
+                )
+            </foreach>
+    </insert>
 </mapper>
