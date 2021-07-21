@@ -1,4 +1,4 @@
-package com.mengxuegu.blog.article;
+package com.mengxuegu.blog.article.api;
 
 import com.mengxuegu.blog.article.service.ICategoryService;
 import com.mengxuegu.blog.util.base.Result;
