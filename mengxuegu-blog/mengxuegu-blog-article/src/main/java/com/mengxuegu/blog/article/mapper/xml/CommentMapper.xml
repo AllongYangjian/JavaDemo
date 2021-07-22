@@ -3,7 +3,7 @@
 <mapper namespace="com.mengxuegu.blog.article.mapper.CommentMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.mengxuegu.blog.entities.Comment">
+    <resultMap id="BaseResultMap" type="Comment">
         <id column="id" property="id" />
         <result column="parent_id" property="parentId" />
         <result column="user_id" property="userId" />
@@ -12,11 +12,23 @@
         <result column="article_id" property="articleId" />
         <result column="content" property="content" />
         <result column="create_date" property="createDate" />
+        <collection property="children" javaType="list" ofType="Comment"
+            column="id" select="findByParentId">
+        </collection>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, parent_id, user_id, nick_name, user_image, article_id, content, create_date
     </sql>
+
+    <select id="findByParentId" resultMap="BaseResultMap">
+        select * from mxg_comment where parent_id = #{id}
+    </select>
+    <select id="findByArticleId" resultMap="BaseResultMap">
+        select * from mxg_comment where parent_id = -1
+        and article_id = #{articleId}
+        order by create_date desc;
+    </select>
 
 </mapper>

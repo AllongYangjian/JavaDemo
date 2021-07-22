@@ -2,6 +2,9 @@ package com.mengxuegu.blog.article.mapper;
 
 import com.mengxuegu.blog.entities.Comment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CommentMapper extends BaseMapper<Comment> {
 
+    List<Comment> findByArticleId(@Param("articleId")String articleId);
 }
