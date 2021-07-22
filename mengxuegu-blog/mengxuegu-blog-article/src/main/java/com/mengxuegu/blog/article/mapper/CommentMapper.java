@@ -17,4 +17,5 @@ import java.util.List;
 public interface CommentMapper extends BaseMapper<Comment> {
 
     List<Comment> findByArticleId(@Param("articleId")String articleId);
+
 }

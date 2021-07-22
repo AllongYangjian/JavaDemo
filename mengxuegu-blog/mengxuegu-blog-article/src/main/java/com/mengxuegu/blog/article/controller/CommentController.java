@@ -2,16 +2,13 @@ package com.mengxuegu.blog.article.controller;
 
 
 import com.mengxuegu.blog.article.service.ICommentService;
+import com.mengxuegu.blog.entities.Comment;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -35,6 +32,19 @@ public class CommentController {
     @ApiImplicitParam(name = "articleId", value = "文章id", required = true)
     public Result list(@PathVariable String articleId) {
         return commentService.findByArticleId(articleId);
+    }
+
+    @DeleteMapping("/{id}")
+    @ApiOperation("递归删除评论")
+    @ApiImplicitParam(name = "id", value = "评论id", required = true)
+    public Result delete(@PathVariable String id) {
+        return commentService.deleteById(id);
+    }
+
+    @ApiOperation("新增评论信息接口")
+    @PostMapping
+    public Result save(@RequestBody Comment comment) {
+        return Result.ok(commentService.save(comment));
     }
 
 }

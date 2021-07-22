@@ -19,4 +19,11 @@ public interface ICommentService extends IService<Comment> {
      * @return
      */
     Result findByArticleId(String articleId);
+
+    /**
+     * 根据评论id对删除评论信息
+     * @param id
+     * @return
+     */
+    Result deleteById(String id);
 }
