@@ -90,5 +90,17 @@ public class ArticleController {
         return articleService.updateArticleThumb(id, count);
     }
 
+    @ApiOperation("查询审核通过且已公开文章数量")
+    @GetMapping("/total")
+    public Result getArticleTotal(){
+        return articleService.getArticleTotal();
+    }
+
+    @ApiOperation("统计每个分类下的文章数量")
+    @GetMapping("/category/total")
+    public Result categoryTotal(){
+        return articleService.selectCategoryTotal();
+    }
+
 
 }

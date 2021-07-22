@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -44,4 +45,10 @@ public interface ArticleMapper extends BaseMapper<Article> {
     IPage<Article> findListByLabelIdOrCategoryId(IPage<Article> page,
                                                  @Param("categoryId")String categoryId,
                                                  @Param("labelId") String labelId);
+
+    /**
+     * 查询每个分类下文章数量
+     * @return
+     */
+    List<Map<String,Object>> selectCategoryTotal();
 }

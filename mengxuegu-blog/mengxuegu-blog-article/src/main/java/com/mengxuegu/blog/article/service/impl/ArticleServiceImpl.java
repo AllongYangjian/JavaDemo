@@ -16,7 +16,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * <p>
@@ -122,6 +122,27 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     @Override
     public Result findListByLabelIdOrCategoryId(ArticleListREQ req) {
-        return Result.ok(baseMapper.findListByLabelIdOrCategoryId(req.getPage(),req.getCategoryId(),req.getLabelId()));
+        return Result.ok(baseMapper.findListByLabelIdOrCategoryId(req.getPage(), req.getCategoryId(), req.getLabelId()));
+    }
+
+    @Override
+    public Result getArticleTotal() {
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.eq("status", ArticleStatusEnum.SUCCESS.getCode())
+                .eq("ispublic", 1);
+        return Result.ok(count(wrapper));
+    }
+
+    @Override
+    public Result selectCategoryTotal() {
+        List<Map<String, Object>> maps = baseMapper.selectCategoryTotal();
+        List<Object> nameList = new ArrayList<>();
+        for (Map<String, Object> map : maps) {
+            nameList.add(map.get("name"));
+        }
+        Map<String, Object> data = new HashMap<>();
+        data.put("nameList", nameList);
+        data.put("nameAndValueList", maps);
+        return Result.ok(data);
     }
 }

@@ -75,4 +75,9 @@
         </if>
         ORDER BY m3.update_date DESC
     </select>
+
+<!--    List<Map<String,Object>> selectCategoryTotal();-->
+    <select id="selectCategoryTotal" resultMap="map">
+        select `name`,`value` from v_category_total
+    </select>
 </mapper>
