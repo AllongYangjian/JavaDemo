@@ -35,3 +35,12 @@ mybatis-plus:
 logging:
   level:
     com.mengxuegu.blog.article.mapper: debug
+
+mengxuegu:
+  blog:
+    aliyun:
+      endpoint: https://oss-cn-hangzhou.aliyuncs.com
+      accessKeyId: LTAI5tQJqrxYu82xCNTdDFpF
+      accessKeySecret: GrFWxkdYUI2mpKAQQAdxzFeilQy52a
+      bucketName: allong
+      bucketDomain: https://allong.oss-cn-hangzhou.aliyuncs.com/
