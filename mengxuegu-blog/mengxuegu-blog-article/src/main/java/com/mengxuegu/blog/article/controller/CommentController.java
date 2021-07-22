@@ -27,12 +27,6 @@ public class CommentController {
     private ICommentService commentService;
 
 
-    @GetMapping("/{articleId}")
-    @ApiOperation("根据文章id查询评论列表")
-    @ApiImplicitParam(name = "articleId", value = "文章id", required = true)
-    public Result list(@PathVariable String articleId) {
-        return commentService.findByArticleId(articleId);
-    }
 
     @DeleteMapping("/{id}")
     @ApiOperation("递归删除评论")
