@@ -47,6 +47,8 @@ public class CodeGenerator {
         globalConfig.setFileOverride(false);
         globalConfig.setDateType(DateType.ONLY_DATE);
         globalConfig.setSwagger2(true);
+        globalConfig.setBaseColumnList(true);
+        globalConfig.setBaseResultMap(true);
         generator.setGlobalConfig(globalConfig);
 
         PackageConfig packageConfig = new PackageConfig();
@@ -70,7 +72,7 @@ public class CodeGenerator {
         strategyConfig.setEntityTableFieldAnnotationEnable(true);
         strategyConfig.setTablePrefix("mxg_");
 //        strategyConfig.setExclude("mxg_category");
-        strategyConfig.setInclude("mxg_article");
+        strategyConfig.setInclude("mxg_comment");
 
         generator.setStrategy(strategyConfig);
 
