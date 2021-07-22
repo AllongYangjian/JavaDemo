@@ -102,5 +102,11 @@ public class ArticleController {
         return articleService.selectCategoryTotal();
     }
 
+    @ApiOperation("统计近六个月发布的文章数")
+    @GetMapping("/month/total")
+    public Result selectYearMonthTotal(){
+        return articleService.selectYearMonthTotal();
+    }
+
 
 }

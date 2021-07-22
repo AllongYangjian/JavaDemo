@@ -145,4 +145,22 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         data.put("nameAndValueList", maps);
         return Result.ok(data);
     }
+
+    @Override
+    public Result selectYearMonthTotal() {
+        List<Map<String, Object>> maps = baseMapper.selectMonthArticleTotal();
+        List<Object> yearMonthList = new ArrayList<>();
+        List<Object> articleTotalList = new ArrayList<>();
+
+        for (Map<String, Object> map : maps) {
+            yearMonthList.add(map.get("year_month"));
+            articleTotalList.add(map.get("total"));
+        }
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("yearMonthList", yearMonthList);
+        data.put("articleTotalList", articleTotalList);
+
+        return Result.ok(data);
+    }
 }

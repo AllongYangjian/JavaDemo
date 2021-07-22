@@ -77,7 +77,12 @@
     </select>
 
 <!--    List<Map<String,Object>> selectCategoryTotal();-->
-    <select id="selectCategoryTotal" resultMap="map">
+    <select id="selectCategoryTotal" resultType="map">
         select `name`,`value` from v_category_total
+    </select>
+
+<!--     List<Map<String,Object>> selectMonthArticleTotal();-->
+    <select id="selectMonthArticleTotal" resultType="map">
+        select `year_month`, total from v_month_article_total;
     </select>
 </mapper>

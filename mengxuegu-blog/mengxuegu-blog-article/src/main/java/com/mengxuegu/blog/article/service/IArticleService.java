@@ -78,5 +78,12 @@ public interface IArticleService extends IService<Article> {
      */
     Result getArticleTotal();
 
+    /**
+     * 统计每个分类下的文章数
+     * @return
+     */
     Result selectCategoryTotal();
+
+    Result selectYearMonthTotal();
+
 }
