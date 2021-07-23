@@ -72,7 +72,7 @@ public class CodeGenerator {
         strategyConfig.setEntityTableFieldAnnotationEnable(true);
         strategyConfig.setTablePrefix("mxg_");
 //        strategyConfig.setExclude("mxg_category");
-        strategyConfig.setInclude("mxg_comment");
+        strategyConfig.setInclude("mxg_advert");
 
         generator.setStrategy(strategyConfig);
 
