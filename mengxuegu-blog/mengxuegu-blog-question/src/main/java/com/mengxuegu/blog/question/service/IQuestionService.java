@@ -59,4 +59,12 @@ public interface IQuestionService extends IService<Question> {
      * @return
      */
     Result updateViewCount(String id);
+
+
+    /**
+     * 修改或新增问题数据
+     * @param question
+     * @return
+     */
+    Result updateOrSave(Question question);
 }

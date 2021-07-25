@@ -25,4 +25,20 @@ public interface QuestionMapper extends BaseMapper<Question> {
      * @return
      */
     Question findQuestionAndLabelIdsById(String id);
+
+    /**
+     * 通过问题id删除问题标签中间表
+     * @param questionId
+     * @return
+     */
+    boolean deleteQuestionLabel(@Param("questionId") String questionId);
+
+    /**
+     * 新增问题标签中间表数据
+     * @param questionId 问题id
+     * @param labelIds 标签id集合
+     * @return
+     */
+    boolean saveQuestionLabel(@Param("questionId") String questionId,
+                              @Param("labelIds") List<String> labelIds);
 }

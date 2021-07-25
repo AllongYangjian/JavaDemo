@@ -12,6 +12,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * <p>
  * 问题信息表 服务实现类
@@ -95,4 +97,26 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
 
         return Result.ok();
     }
+
+
+    @Override
+    public Result updateOrSave(Question question) {
+//        1. 如果是更新，删除 mxg_question_lable 问题标签中间表数据，且设置更新时间
+        if(StringUtils.isNotEmpty( question.getId() )) {
+            baseMapper.deleteQuestionLabel(question.getId());
+            question.setUpdateDate(new Date());
+        }
+//        2. 问题数据新增或更新到 mxg_question 表
+        super.saveOrUpdate(question);
+
+//        3. 问题所属标签保存到 mxg_question_lable 表
+        if(CollectionUtils.isNotEmpty(question.getLabelIds())) {
+            baseMapper.saveQuestionLabel(question.getId(), question.getLabelIds());
+        }
+
+        // 4. 响应当前操作的问题id
+        return Result.ok(question.getId());
+    }
+
+
 }
