@@ -23,5 +23,17 @@
     <sql id="Base_Column_List">
         id, user_id, nick_name, user_image, title, md_content, html_content, view_count, thumhup, reply, status, create_date, update_date
     </sql>
+    <select id="findLabelQuestionList" resultType="Question">
+        SELECT DISTINCT
+            m1.*
+        FROM
+            mxg_question m1
+        LEFT JOIN mxg_question_label m2 ON m1.id = m2.question_id
+        WHERE
+            m1.`status` != 0
+        AND m2.label_id = #{labelId}
+        ORDER BY
+            m1.update_date DESC
+    </select>
 
 </mapper>

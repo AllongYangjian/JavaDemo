@@ -1,6 +1,7 @@
 package com.mengxuegu.blog.question.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Question;
 import com.mengxuegu.blog.question.mapper.QuestionMapper;
 import com.mengxuegu.blog.question.service.IQuestionService;
@@ -44,4 +45,18 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
                 .orderByDesc("create_date");
         return Result.ok(baseMapper.selectPage(req.getPage(), wrapper));
     }
+
+    /**
+     * 根据标签id分页查询问题列表
+     * @param req
+     * @param labelId
+     * @return
+     */
+    @Override
+    public Result findLabelQuestionList(BaseRequest<Question> req,String labelId) {
+        return Result.ok(baseMapper.findLabelQuestionList(req.getPage(),labelId));
+    }
+
+
+
 }

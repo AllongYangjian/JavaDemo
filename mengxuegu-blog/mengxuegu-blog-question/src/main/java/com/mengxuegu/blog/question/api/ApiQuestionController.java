@@ -5,12 +5,10 @@ import com.mengxuegu.blog.question.service.IQuestionService;
 import com.mengxuegu.blog.util.base.BaseRequest;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Copyright (C), 2015-2021, 杭州奥朗信息科技有限公司
@@ -47,6 +45,14 @@ public class ApiQuestionController {
     @PostMapping("/wait")
     public Result waitList(@RequestBody BaseRequest<Question> req) {
         return questionService.findWaitList(req);
+    }
+
+
+    @ApiOperation("根据标签id分页查询问题列表")
+    @ApiImplicitParam(name = "labelId",value = "标签ID",required = true)
+    @PostMapping("/list/{labelId}")
+    public Result labelList(@RequestBody BaseRequest<Question> req, @PathVariable("labelId")String labelId) {
+        return questionService.findLabelQuestionList(req,labelId);
     }
 
 }
