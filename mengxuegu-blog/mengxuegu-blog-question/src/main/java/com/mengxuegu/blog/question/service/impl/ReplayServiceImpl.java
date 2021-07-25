@@ -95,4 +95,18 @@ public class ReplayServiceImpl extends ServiceImpl<ReplayMapper, Replay> impleme
         }
     }
 
+    @Transactional //开启事务
+    @Override
+    public Result add(Replay replay) {
+        // 新增回答信息
+        boolean ok = this.save(replay);
+        if(ok) {
+            // 更新问题表中的回复数
+            Question question = questionMapper.selectById(replay.getQuestionId());
+            question.setReply( question.getReply() + 1 ) ;
+            questionMapper.updateById(question);
+        }
+        return Result.ok();
+    }
+
 }

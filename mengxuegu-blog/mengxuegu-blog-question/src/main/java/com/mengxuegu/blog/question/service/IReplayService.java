@@ -26,4 +26,11 @@ public interface IReplayService extends IService<Replay> {
      * @return
      */
     Result deleteById(String id);
+
+    /**
+     * 新增回答信息及更新问题表中的回复数
+     * @param replay
+     * @return
+     */
+    Result add(Replay replay);
 }
