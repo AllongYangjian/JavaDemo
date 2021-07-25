@@ -13,6 +13,7 @@
         <module>mengxuegu-blog-api</module>
         <module>mengxuegu-blog-article</module>
         <module>mengxuegu-blog-generator</module>
+        <module>mengxuegu-blog-question</module>
     </modules>
 
     <parent>
