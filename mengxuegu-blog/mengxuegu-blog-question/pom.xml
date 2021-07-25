@@ -29,6 +29,12 @@
             <version>2.2.0.RELEASE</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            <version>2.2.0.RELEASE</version>
+        </dependency>
+
         <!--热部署 ctrl+f9-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
