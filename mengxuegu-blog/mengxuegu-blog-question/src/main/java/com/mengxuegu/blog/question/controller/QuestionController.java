@@ -5,6 +5,7 @@ import com.mengxuegu.blog.entities.Question;
 import com.mengxuegu.blog.question.service.IQuestionService;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,12 +37,22 @@ public class QuestionController {
         return questionService.updateOrSave(question);
     }
 
-
     @ApiOperation("删除问题信息接口")
     @ApiImplicitParam(name = "id", value = "问题ID", required = true)
     @DeleteMapping("/{id}")
     public Result delete(@PathVariable("id") String id) {
         return questionService.deleteById(id);
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "问题ID", required = true),
+            @ApiImplicitParam(name = "count", value = "点赞数(只能是1或-1)", required = true)
+    })
+    @ApiOperation("更新点赞数")
+    @PutMapping("/thumb/{id}/{count}")
+    public Result updateThumhup(@PathVariable("id") String id,
+                                @PathVariable("count") int count) {
+        return questionService.updateThumhup(id, count);
     }
 
 }

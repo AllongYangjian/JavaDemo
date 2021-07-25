@@ -73,4 +73,13 @@ public interface IQuestionService extends IService<Question> {
      * @return
      */
     Result deleteById(String id);
+
+    /**
+     * 更新点赞数
+     * @param id 问题id
+     * @param count 是1（点赞）或者-1 (取消点赞)，
+     * @return
+     */
+    Result updateThumhup(String id, int count);
+
 }

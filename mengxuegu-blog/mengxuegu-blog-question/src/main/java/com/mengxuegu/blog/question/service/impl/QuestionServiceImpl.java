@@ -142,6 +142,32 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         return Result.ok();
     }
 
+    @Override
+    public Result updateThumhup(String id, int count) {
+        if(count != -1 && count != 1) {
+            return Result.error("无效操作");
+        }
+        if(StringUtils.isEmpty(id)) {
+            return Result.error("无效操作");
+        }
+
+        Question question = baseMapper.selectById(id);
+        if(question == null) {
+            return Result.error("问题不存在");
+        }
+
+        if(question.getThumhup() <= 0 && count == -1) {
+            return Result.error("无效操作");
+        }
+
+        question.setThumhup( question.getThumhup() + count );
+
+        baseMapper.updateById(question);
+
+        return Result.ok();
+    }
+
+
 
 
 }
