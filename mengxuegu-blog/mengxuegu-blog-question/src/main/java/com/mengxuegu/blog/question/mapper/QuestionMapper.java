@@ -18,4 +18,11 @@ import java.util.List;
 public interface QuestionMapper extends BaseMapper<Question> {
 
     IPage<Question> findLabelQuestionList(IPage<Question> page,@Param("labelId") String labelId);
+
+    /**
+     * 根据问题id查询问题详情与属性标签ids
+     * @param id
+     * @return
+     */
+    Question findQuestionAndLabelIdsById(String id);
 }

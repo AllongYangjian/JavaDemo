@@ -37,5 +37,26 @@ public interface IQuestionService extends IService<Question> {
      */
     Result findWaitList(BaseRequest<Question> req);
 
+    /**
+     * 根据标签id分页查询问题列表
+     * @param req
+     * @param labelId
+     * @return
+     */
     Result findLabelQuestionList(BaseRequest<Question> req, String labelId);
+
+
+    /**
+     * 通过问题id查询详情
+     * @param id 问题id
+     * @return
+     */
+    Result findById(String id);
+
+    /**
+     * 更新问题浏览数
+     * @param id
+     * @return
+     */
+    Result updateViewCount(String id);
 }

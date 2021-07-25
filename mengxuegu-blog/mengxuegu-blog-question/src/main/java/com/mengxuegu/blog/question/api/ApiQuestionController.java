@@ -55,4 +55,19 @@ public class ApiQuestionController {
         return questionService.findLabelQuestionList(req,labelId);
     }
 
+
+    @ApiOperation("查询问题详情接口")
+    @ApiImplicitParam(name="id", value="问题ID", required=true)
+    @GetMapping("/{id}")
+    public Result view(@PathVariable("id") String id) {
+        return questionService.findById(id);
+    }
+
+    @ApiOperation("更新浏览数接口")
+    @ApiImplicitParam(name="id", value="问题ID", required=true)
+    @PutMapping("/viewCount/{id}")
+    public Result updateViewCount(@PathVariable("id") String id) {
+        return questionService.updateViewCount(id);
+    }
+
 }

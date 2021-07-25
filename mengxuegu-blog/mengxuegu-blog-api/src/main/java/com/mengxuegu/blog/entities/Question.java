@@ -2,10 +2,15 @@ package com.mengxuegu.blog.entities;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
+
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,7 +27,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @TableName("mxg_question")
-@ApiModel(value="Question对象", description="问题信息表")
+@ApiModel(value = "Question对象", description = "问题信息表")
 public class Question implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -79,5 +84,11 @@ public class Question implements Serializable {
     @TableField("update_date")
     private Date updateDate;
 
+    @ApiModelProperty(value = "标签ID列表")
+    @TableField(exist = false)
+    private List<String> labelIds;
 
+    @ApiModelProperty(value = "标签对象集合")
+    @TableField(exist = false)
+    private List<Label> labelList;
 }

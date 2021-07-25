@@ -17,6 +17,9 @@
         <result column="status" property="status" />
         <result column="create_date" property="createDate" />
         <result column="update_date" property="updateDate" />
+        <collection property="labelIds" javaType="list" ofType="string">
+            <id column="label_id" />
+        </collection>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -34,6 +37,12 @@
         AND m2.label_id = #{labelId}
         ORDER BY
             m1.update_date DESC
+    </select>
+    <select id="findQuestionAndLabelIdsById" resultMap="BaseResultMap">
+        SELECT m1.*, m2.label_id
+        FROM mxg_question m1 LEFT JOIN mxg_question_label m2
+        ON m1.id = m2.question_id
+        WHERE m1.id = #{id}
     </select>
 
 </mapper>
