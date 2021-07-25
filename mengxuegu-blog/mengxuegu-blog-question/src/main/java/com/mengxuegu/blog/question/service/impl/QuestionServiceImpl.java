@@ -118,5 +118,30 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         return Result.ok(question.getId());
     }
 
+    @Override
+    public Result deleteById(String id) {
+        return this.updateStatus(id, 0); // 0 表示删除
+    }
+
+
+    /**
+     * 修改问题状态值
+     * @param id 问题id
+     * @param status 问题状态
+     * @return
+     */
+    public Result updateStatus(String id, Integer status) {
+
+        // 通过问题id查询问题详情
+        Question question = baseMapper.selectById(id);
+        // 设置新状态值
+        question.setStatus(status);
+        question.setUpdateDate(new Date());
+
+        baseMapper.updateById(question);
+        return Result.ok();
+    }
+
+
 
 }

@@ -4,6 +4,7 @@ package com.mengxuegu.blog.question.controller;
 import com.mengxuegu.blog.entities.Question;
 import com.mengxuegu.blog.question.service.IQuestionService;
 import com.mengxuegu.blog.util.base.Result;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,14 @@ public class QuestionController {
     @PostMapping // post 请求 /question/question
     public Result save(@RequestBody Question question) {
         return questionService.updateOrSave(question);
+    }
+
+
+    @ApiOperation("删除问题信息接口")
+    @ApiImplicitParam(name = "id", value = "问题ID", required = true)
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable("id") String id) {
+        return questionService.deleteById(id);
     }
 
 }

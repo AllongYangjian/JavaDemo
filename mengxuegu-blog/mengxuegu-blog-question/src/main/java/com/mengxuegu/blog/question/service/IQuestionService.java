@@ -67,4 +67,10 @@ public interface IQuestionService extends IService<Question> {
      * @return
      */
     Result updateOrSave(Question question);
+    /**
+     * 假删除，只是装饰状态更新为 0 ，表示删除
+     * @param id 问题id
+     * @return
+     */
+    Result deleteById(String id);
 }
