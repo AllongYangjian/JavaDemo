@@ -39,7 +39,7 @@ public class ArticleController {
     @ApiOperation("查询文章详情接口")
     @ApiImplicitParam(name = "id", value = "文章ID", required = true)
     @GetMapping("/{id}")
-    public Result findArticleAndLabelById(@PathVariable String id) {
+    public Result findArticleAndLabelById(@PathVariable("id") String id) {
         return articleService.findArticleAndLabelById(id);
     }
 
@@ -58,21 +58,21 @@ public class ArticleController {
     @ApiOperation("删除文章接口")
     @ApiImplicitParam(name = "id", value = "文章ID", required = true)
     @DeleteMapping("/{id}")
-    public Result delete(@PathVariable String id) {
+    public Result delete(@PathVariable("id") String id) {
         return articleService.updateStatus(id, ArticleStatusEnum.DELETE);
     }
 
     @ApiOperation("审核通过接口")
     @ApiImplicitParam(name = "id", value = "文章ID", required = true)
     @GetMapping("/audit/success/{id}")
-    public Result success(@PathVariable String id) {
+    public Result success(@PathVariable("id") String id) {
         return articleService.updateStatus(id, ArticleStatusEnum.SUCCESS);
     }
 
     @ApiOperation("审核不通过接口")
     @ApiImplicitParam(name = "id", value = "文章ID", required = true)
     @GetMapping("/audit/fail/{id}")
-    public Result fail(@PathVariable String id) {
+    public Result fail(@PathVariable("id") String id) {
         return articleService.updateStatus(id, ArticleStatusEnum.FAIL);
     }
 
@@ -86,7 +86,7 @@ public class ArticleController {
     @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "文章id", required = true),
             @ApiImplicitParam(name = "count", value = "点赞数", required = true)})
     @PutMapping("/thumb/{id}/{count}")
-    public Result updateArticleThumb(@PathVariable String id, @PathVariable int count) {
+    public Result updateArticleThumb(@PathVariable("id") String id, @PathVariable("count") int count) {
         return articleService.updateArticleThumb(id, count);
     }
 

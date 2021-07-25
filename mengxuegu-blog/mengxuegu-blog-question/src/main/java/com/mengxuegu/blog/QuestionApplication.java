@@ -5,6 +5,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * Copyright (C), 2015-2021, 杭州奥朗信息科技有限公司
@@ -20,6 +21,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @EnableSwagger2Doc
 @EnableDiscoveryClient
 @MapperScan("com.mengxuegu.blog.question.mapper")
+@EnableFeignClients //允许扫描feig接口，否则会当做普通接口
 public class QuestionApplication {
 
     public static void main(String[] args) {

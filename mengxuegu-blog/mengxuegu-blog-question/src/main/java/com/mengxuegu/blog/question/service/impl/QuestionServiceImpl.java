@@ -2,7 +2,9 @@ package com.mengxuegu.blog.question.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.mengxuegu.blog.entities.Label;
 import com.mengxuegu.blog.entities.Question;
+import com.mengxuegu.blog.feign.IFeignArticleController;
 import com.mengxuegu.blog.question.mapper.QuestionMapper;
 import com.mengxuegu.blog.question.req.QuestionUserREQ;
 import com.mengxuegu.blog.question.service.IQuestionService;
@@ -11,10 +13,13 @@ import com.mengxuegu.blog.util.base.BaseRequest;
 import com.mengxuegu.blog.util.base.Result;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -63,6 +68,8 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         return Result.ok(baseMapper.findLabelQuestionList(req.getPage(),labelId));
     }
 
+    @Autowired
+    private IFeignArticleController feignArticleController;
 
     @Override
     public Result findById(String id) {
@@ -75,7 +82,8 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
 
         // TODO 2. Feign 远程调用  Article 服务查询标签信息
         if(CollectionUtils.isNotEmpty(question.getLabelIds())) {
-
+            List<Label> labelListByIds = feignArticleController.getLabelListByIds(question.getLabelIds());
+            question.setLabelList(labelListByIds);
         }
 
         return Result.ok(question);
