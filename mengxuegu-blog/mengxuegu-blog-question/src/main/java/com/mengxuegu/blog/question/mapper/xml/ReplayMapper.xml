@@ -3,7 +3,7 @@
 <mapper namespace="com.mengxuegu.blog.question.mapper.ReplayMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.mengxuegu.blog.entities.Replay">
+    <resultMap id="replayResultMap" type="com.mengxuegu.blog.entities.Replay">
         <id column="id" property="id" />
         <result column="parent_id" property="parentId" />
         <result column="user_id" property="userId" />
@@ -13,11 +13,23 @@
         <result column="md_content" property="mdContent" />
         <result column="html_content" property="htmlContent" />
         <result column="create_date" property="createDate" />
+        <collection property="children" javaType="list" ofType="Replay"
+                    column="id" select="findByParentId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, parent_id, user_id, nick_name, user_image, question_id, md_content, html_content, create_date
     </sql>
+
+    <!--是查询子评论-->
+    <select id="findByParentId" resultMap="replayResultMap">
+        SELECT * FROM mxg_replay WHERE parent_id = #{id}
+    </select>
+    <select id="findByQuestionId" resultType="Replay">
+         SELECT * FROM mxg_replay WHERE parent_id = -1
+        AND question_id = #{questionId}
+        ORDER BY create_date DESC
+    </select>
 
 </mapper>

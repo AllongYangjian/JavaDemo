@@ -6,6 +6,8 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -62,6 +64,10 @@ public class Replay implements Serializable {
     @ApiModelProperty(value = "创建时间")
     @TableField("create_date")
     private Date createDate;
+
+    @ApiModelProperty(value = "子评论列表")
+    @TableField(exist = false)
+    private List<Replay> children;
 
 
 }
