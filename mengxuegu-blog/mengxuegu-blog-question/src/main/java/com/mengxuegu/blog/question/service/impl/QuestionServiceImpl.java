@@ -187,6 +187,16 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         return Result.ok(  baseMapper.selectPage(req.getPage(), wrapper) );
     }
 
+    @Override
+    public Result getQuestionTotal() {
+        QueryWrapper<Question> wrapper = new QueryWrapper<>();
+        // 状态不能是删除的（0），应该是 1 和 2
+        wrapper.in("status", Arrays.asList(1, 2));
+
+        Integer total = baseMapper.selectCount(wrapper);
+        return Result.ok(total);
+    }
+
 
 
 

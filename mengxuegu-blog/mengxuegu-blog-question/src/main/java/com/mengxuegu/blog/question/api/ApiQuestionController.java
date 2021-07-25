@@ -70,4 +70,10 @@ public class ApiQuestionController {
         return questionService.updateViewCount(id);
     }
 
+    @ApiOperation("查询提问总记录")
+    @GetMapping("/total")  // /question/question/total
+    public Result questionTotal() {
+        return questionService.getQuestionTotal();
+    }
+
 }

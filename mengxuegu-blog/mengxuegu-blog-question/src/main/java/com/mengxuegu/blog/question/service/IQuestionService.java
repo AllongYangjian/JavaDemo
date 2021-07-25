@@ -90,4 +90,9 @@ public interface IQuestionService extends IService<Question> {
      */
     Result findListByUserId(QuestionUserREQ req);
 
+    /**
+     * 统计提问总记录
+     * @return
+     */
+    Result getQuestionTotal();
 }
