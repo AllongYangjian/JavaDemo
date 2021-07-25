@@ -3,6 +3,7 @@ package com.mengxuegu.blog.question.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Question;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mengxuegu.blog.question.req.QuestionUserREQ;
 import com.mengxuegu.blog.util.base.BaseRequest;
 import com.mengxuegu.blog.util.base.Result;
 
@@ -81,5 +82,12 @@ public interface IQuestionService extends IService<Question> {
      * @return
      */
     Result updateThumhup(String id, int count);
+
+    /**
+     * 根据用户id查询问题列表
+     * @param req
+     * @return
+     */
+    Result findListByUserId(QuestionUserREQ req);
 
 }

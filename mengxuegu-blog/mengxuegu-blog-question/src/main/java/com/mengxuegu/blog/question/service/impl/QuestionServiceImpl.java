@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Question;
 import com.mengxuegu.blog.question.mapper.QuestionMapper;
+import com.mengxuegu.blog.question.req.QuestionUserREQ;
 import com.mengxuegu.blog.question.service.IQuestionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mengxuegu.blog.util.base.BaseRequest;
@@ -12,6 +13,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -166,6 +168,25 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
 
         return Result.ok();
     }
+
+
+    @Override
+    public Result findListByUserId(QuestionUserREQ req) {
+        if(StringUtils.isEmpty(req.getUserId())) {
+            return Result.error("无效用户信息");
+        }
+
+        QueryWrapper<Question> wrapper = new QueryWrapper<>();
+        wrapper.in("status", Arrays.asList(1, 2));
+
+        // 根据用户id查询
+        wrapper.eq("user_id", req.getUserId());
+
+        // 排序
+        wrapper.orderByDesc("update_date");
+        return Result.ok(  baseMapper.selectPage(req.getPage(), wrapper) );
+    }
+
 
 
 

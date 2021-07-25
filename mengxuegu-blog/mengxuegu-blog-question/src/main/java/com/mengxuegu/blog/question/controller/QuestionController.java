@@ -2,6 +2,7 @@ package com.mengxuegu.blog.question.controller;
 
 
 import com.mengxuegu.blog.entities.Question;
+import com.mengxuegu.blog.question.req.QuestionUserREQ;
 import com.mengxuegu.blog.question.service.IQuestionService;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.ApiImplicitParam;
@@ -54,5 +55,13 @@ public class QuestionController {
                                 @PathVariable("count") int count) {
         return questionService.updateThumhup(id, count);
     }
+
+
+    @ApiOperation("根据用户id查询问题列表")
+    @PostMapping("/user")
+    public Result findListByUserId(@RequestBody QuestionUserREQ req) {
+        return questionService.findListByUserId(req);
+    }
+
 
 }
