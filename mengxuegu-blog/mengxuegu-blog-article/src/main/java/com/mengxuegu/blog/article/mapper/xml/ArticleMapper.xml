@@ -15,6 +15,7 @@
         <result column="thumhup" property="thumhup"/>
         <result column="status" property="status"/>
         <result column="ispublic" property="ispublic"/>
+        <result column="image_url" property="imageUrl"/>
         <result column="create_date" property="createDate"/>
         <result column="update_date" property="updateDate"/>
         <!--        封装标签id集合-->
