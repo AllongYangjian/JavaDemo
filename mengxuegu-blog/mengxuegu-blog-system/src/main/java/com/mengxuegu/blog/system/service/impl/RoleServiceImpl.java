@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mengxuegu.blog.util.base.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -33,5 +34,17 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         // 条件分页查询
         IPage<Role> page = baseMapper.selectPage(req.getPage(), wrapper);
         return Result.ok(page);
+    }
+
+
+    @Transactional // 事务管理
+    @Override
+    public Result deleteById(String id) {
+        // 1. 删除角色信息表数据 sys_role
+        baseMapper.deleteById(id);
+        // 2. 删除角色菜单关系表数据 sys_role_menu
+        baseMapper.deleteRoleMenuByRoleId(id);
+
+        return Result.ok();
     }
 }

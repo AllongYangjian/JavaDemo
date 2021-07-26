@@ -22,4 +22,11 @@ public interface IRoleService extends IService<Role> {
      */
     Result queryPage(SysRoleREQ req);
 
+
+    /**
+     * 通过角色id删除角色信息及角色菜单关系表
+     * @param id 角色id
+     * @return
+     */
+    Result deleteById(String id);
 }

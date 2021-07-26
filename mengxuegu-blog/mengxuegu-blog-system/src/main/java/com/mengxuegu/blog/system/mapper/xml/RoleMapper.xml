@@ -15,5 +15,8 @@
     <sql id="Base_Column_List">
         id, name, remark, create_date, update_date
     </sql>
+    <delete id="deleteRoleMenuByRoleId">
+          DELETE FROM sys_role_menu WHERE role_id = #{roleId}
+    </delete>
 
 </mapper>
