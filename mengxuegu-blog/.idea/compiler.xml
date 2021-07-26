@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mengxuegublogarticle" />
-        <module name="mengxuegublogquestion" />
         <module name="mengxuegublogutil" />
-        <module name="mengxuegublogapi" />
         <module name="mengxuegubloggenerator" />
+        <module name="mengxuegublogquestion" />
+        <module name="mengxuegublogsystem" />
+        <module name="mengxuegublogapi" />
+        <module name="mengxuegublogarticle" />
       </profile>
     </annotationProcessing>
   </component>
@@ -22,6 +23,7 @@
       <module name="mengxuegublogarticle" options="-parameters" />
       <module name="mengxuegubloggenerator" options="-parameters" />
       <module name="mengxuegublogquestion" options="-parameters" />
+      <module name="mengxuegublogsystem" options="-parameters" />
       <module name="mengxuegublogutil" options="-parameters" />
     </option>
   </component>

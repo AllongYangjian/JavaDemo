@@ -21,11 +21,11 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
  * yangjian       2021/7/20 22:13        1.0              描述
  */
 public class CodeGenerator {
-    public static String PROJECT_NAME = "mengxuegu-blog-question";
+    public static String PROJECT_NAME = "mengxuegu-blog-system";
 
-    public static String DATABASE_NAME = "mxg_blog_question";
+    public static String DATABASE_NAME = "mxg_blog_system";
 
-    private static String MODULE_NAME = "question";
+    private static String MODULE_NAME = "system";
 
     public static void main(String[] args) {
         AutoGenerator generator = new AutoGenerator();
@@ -70,9 +70,9 @@ public class CodeGenerator {
         strategyConfig.setRestControllerStyle(true);
         strategyConfig.setControllerMappingHyphenStyle(true);
         strategyConfig.setEntityTableFieldAnnotationEnable(true);
-        strategyConfig.setTablePrefix("mxg_");
+        strategyConfig.setTablePrefix("sys_");
 //        strategyConfig.setExclude("mxg_category");
-//        strategyConfig.setInclude("mxg_advert");
+        strategyConfig.setInclude("sys_user","sys_role","sys_menu");
 
         generator.setStrategy(strategyConfig);
 

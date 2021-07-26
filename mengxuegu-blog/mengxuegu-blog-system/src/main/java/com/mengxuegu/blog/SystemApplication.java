@@ -1,7 +1,6 @@
 package com.mengxuegu.blog;
 
 import com.spring4all.swagger.EnableSwagger2Doc;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -9,22 +8,20 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * Copyright (C), 2015-2021, 杭州奥朗信息科技有限公司
- * FileName: QuestionApplication
+ * FileName: SystemApplication
  * Author:   yangjian
- * Date:     2021/7/25 15:18
- * Description: 4
+ * Date:     2021/7/26 21:46
+ * Description:
  * History:
  * <author>          <time>          <version>          <desc>
- * yangjian       2021/7/25 15:18        1.0              描述
+ * yangjian       2021/7/26 21:46        1.0              描述
  */
-@SpringBootApplication
 @EnableSwagger2Doc
 @EnableDiscoveryClient
-//@MapperScan("com.mengxuegu.blog.question.mapper")
-@EnableFeignClients //允许扫描feig接口，否则会当做普通接口
-public class QuestionApplication {
-
+@EnableFeignClients
+@SpringBootApplication
+public class SystemApplication {
     public static void main(String[] args) {
-        SpringApplication.run(QuestionApplication.class, args);
+        SpringApplication.run(SystemApplication.class, args);
     }
 }

@@ -14,6 +14,7 @@
         <module>mengxuegu-blog-article</module>
         <module>mengxuegu-blog-generator</module>
         <module>mengxuegu-blog-question</module>
+        <module>mengxuegu-blog-system</module>
     </modules>
 
     <parent>
