@@ -1,9 +1,14 @@
 package com.mengxuegu.blog.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Role;
 import com.mengxuegu.blog.system.mapper.RoleMapper;
+import com.mengxuegu.blog.system.req.SysRoleREQ;
 import com.mengxuegu.blog.system.service.IRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mengxuegu.blog.util.base.Result;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +22,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
+    @Override
+    public Result queryPage(SysRoleREQ req) {
+        QueryWrapper<Role> wrapper = new QueryWrapper<>();
+
+        // 条件查询
+        if(StringUtils.isNotEmpty(req.getName())) {
+            wrapper.like("name", req.getName());
+        }
+        // 条件分页查询
+        IPage<Role> page = baseMapper.selectPage(req.getPage(), wrapper);
+        return Result.ok(page);
+    }
 }
