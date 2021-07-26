@@ -21,5 +21,29 @@
     <sql id="Base_Column_List">
         id, parent_id, name, url, type, code, icon, sort, remark, create_date, update_date
     </sql>
+    <select id="findByUserId" resultType="com.mengxuegu.blog.entities.Menu">
+     SELECT DISTINCT
+                m.id,
+                m.parent_id,
+                m.`name`,
+                m.`code`,
+                m.url,
+                m.type,
+                m.icon,
+                m.sort,
+                m.remark,
+                m.create_date,
+                m.update_date
+            FROM
+                sys_user u
+            JOIN sys_user_role ur ON u.id = ur.user_id
+            JOIN sys_role r ON ur.role_id = r.id
+            JOIN sys_role_menu rm ON r.id = rm.role_id
+            JOIN sys_menu m ON rm.menu_id = m.id
+            WHERE
+                u.id = #{userId}
+            ORDER BY
+                m.sort
+    </select>
 
 </mapper>

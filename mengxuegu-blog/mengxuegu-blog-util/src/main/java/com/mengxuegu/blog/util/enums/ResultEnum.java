@@ -35,7 +35,7 @@ public enum  ResultEnum {
 
     AUTH_PASSWORD_NONE(1406,"密码不能为空"),
 
-    MENU(306,"没有权限，请联系管理员");
+    MENU_NO(306,"没有权限，请联系管理员");
 
     private int code;
 

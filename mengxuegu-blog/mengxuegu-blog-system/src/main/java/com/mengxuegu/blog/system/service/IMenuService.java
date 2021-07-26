@@ -21,4 +21,17 @@ public interface IMenuService extends IService<Menu> {
      */
     Result queryList(SysMenuREQ req);
 
+    /**
+     * 根据菜单id删除
+     * @param id 菜单id
+     * @return
+     */
+    Result deleteById(String id);
+
+    /**
+     * 通过用户id查询所拥有的权限菜单树
+     * @param userId
+     * @return
+     */
+    Result findUserMenuTree(String userId);
 }
