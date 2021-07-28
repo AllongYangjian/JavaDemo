@@ -6,9 +6,12 @@ import com.mengxuegu.blog.system.service.IUserService;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -36,5 +39,17 @@ public class UserController {
     @GetMapping("/{id}/role/ids")
     public Result findRoleIdsById(@PathVariable("id") String id) {
         return sysUserService.findRoleIdsById(id);
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户Id", required = true),
+            @ApiImplicitParam(name = "roleIds", value = "角色Id集合", required = true,
+                    allowMultiple = true, dataType = "String"),
+    })
+    @ApiOperation("新增用户角色关系数据接口")
+    @PostMapping("/{id}/role/save") // /user/9/role/save
+    public Result saveUserRole(@PathVariable("id") String id,
+                               @RequestBody List<String> roleIds) {
+        return sysUserService.saveUserRole(id, roleIds);
     }
 }

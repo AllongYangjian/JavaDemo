@@ -7,8 +7,10 @@ import com.mengxuegu.blog.system.req.SysUserREQ;
 import com.mengxuegu.blog.system.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mengxuegu.blog.util.base.Result;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -43,6 +45,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public Result findRoleIdsById(String id) {
         List<String> roleIds = baseMapper.findRoleIdsById(id);
         return Result.ok(roleIds);
+    }
+
+    @Transactional // 事务管理
+    @Override
+    public Result saveUserRole(String userId, List<String> roleIds) {
+        // 1. 删除用户角色关系表数据
+        baseMapper.deleteUserRoleByUserId(userId);
+        // 2. 保存新的用户角色关系表数据
+        if(CollectionUtils.isNotEmpty(roleIds)) {
+            baseMapper.saveUserRole(userId, roleIds);
+        }
+        return Result.ok();
     }
 
 }

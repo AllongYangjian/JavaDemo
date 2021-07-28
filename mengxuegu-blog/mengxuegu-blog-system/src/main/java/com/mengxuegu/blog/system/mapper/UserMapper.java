@@ -23,4 +23,20 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     List<String> findRoleIdsById(@Param("id") String id);
+
+    /**
+     * 通过用户id删除用户角色关系表数据
+     * @param userId 用户id
+     * @return
+     */
+    boolean deleteUserRoleByUserId(@Param("userId") String userId);
+
+    /**
+     * 新增用户角色关系 表数据
+     * @param userId 用户id
+     * @param roleIds 角色id集合
+     * @return
+     */
+    boolean saveUserRole(@Param("userId") String userId,
+                         @Param("roleIds") List<String> roleIds);
 }

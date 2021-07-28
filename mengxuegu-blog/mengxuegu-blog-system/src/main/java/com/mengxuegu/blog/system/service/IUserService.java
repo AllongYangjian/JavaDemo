@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.mengxuegu.blog.system.req.SysUserREQ;
 import com.mengxuegu.blog.util.base.Result;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户信息表 服务类
@@ -29,5 +31,13 @@ public interface IUserService extends IService<User> {
      * @return
      */
     Result findRoleIdsById(String id);
+
+    /**
+     * 新增用户角色关系表数据
+     * @param userId 用户id
+     * @param roleIds 角色id集合
+     * @return
+     */
+    Result saveUserRole(String userId, List<String> roleIds);
 
 }
