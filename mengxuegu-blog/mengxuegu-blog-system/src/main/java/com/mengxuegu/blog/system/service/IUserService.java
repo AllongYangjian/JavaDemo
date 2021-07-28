@@ -40,4 +40,10 @@ public interface IUserService extends IService<User> {
      */
     Result saveUserRole(String userId, List<String> roleIds);
 
+    /**
+     * 根据用户id进行删除，假删除，将is_enabled 状态值更新为0
+     * @param id 用户id
+     * @return
+     */
+    Result deleteById(String id);
 }

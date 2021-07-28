@@ -1,6 +1,7 @@
 package com.mengxuegu.blog.system.controller;
 
 
+import com.mengxuegu.blog.entities.User;
 import com.mengxuegu.blog.system.req.SysUserREQ;
 import com.mengxuegu.blog.system.service.IUserService;
 import com.mengxuegu.blog.util.base.Result;
@@ -9,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,4 +54,33 @@ public class UserController {
                                @RequestBody List<String> roleIds) {
         return sysUserService.saveUserRole(id, roleIds);
     }
+
+    @ApiImplicitParam(name = "id", value = "用户Id", required = true)
+    @ApiOperation("通过用户id删除用户接口")
+    @DeleteMapping("/{id}")
+    public Result delete(@PathVariable("id") String id) {
+        return sysUserService.deleteById(id);
+    }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @ApiOperation("新增用户信息接口")
+    @PostMapping // post 方式  /system/user
+    public Result save(@RequestBody User sysUser) {
+        // 密码加密处理
+        String password = passwordEncoder.encode(sysUser.getPassword());
+        sysUser.setPassword(password);
+        // 新增
+        sysUserService.save(sysUser);
+        return Result.ok();
+    }
+
+    @ApiImplicitParam(name = "id", value = "用户ID", required = true)
+    @ApiOperation("查询用户详情接口")
+    @GetMapping("/{id}") // get 方式 /system/user/1
+    public Result view(@PathVariable("id") String id) {
+        return Result.ok( sysUserService.getById(id) );
+    }
+
 }

@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,5 +59,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         return Result.ok();
     }
+
+    @Override
+    public Result deleteById(String id) {
+        // 1. 先查询当前用户是否存在，
+        User sysUser = baseMapper.selectById(id);
+        if(sysUser == null) {
+            return Result.error("用户不存在，删除失败");
+        }
+        // 2. 如果存在再进行删除
+        sysUser.setIsEnabled(0); // 0 删除，1可用
+        sysUser.setUpdateDate(new Date());
+        baseMapper.updateById(sysUser);
+        return Result.ok();
+    }
+
 
 }
