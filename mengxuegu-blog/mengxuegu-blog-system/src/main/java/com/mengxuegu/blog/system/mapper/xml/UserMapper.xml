@@ -25,4 +25,8 @@
         id, username, password, is_account_non_expired, is_account_non_locked, is_credentials_non_expired, is_enabled, nick_name, image_url, mobile, email, create_date, update_date, pwd_update_date
     </sql>
 
+    <!-- 根据用户id查询当前用户所拥有的角色ids-->
+    <select id="findRoleIdsById" resultType="String">
+        SELECT role_id FROM sys_user_role WHERE user_id = #{id}
+    </select>
 </mapper>

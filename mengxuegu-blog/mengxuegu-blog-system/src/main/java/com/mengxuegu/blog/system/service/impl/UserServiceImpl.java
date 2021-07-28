@@ -10,6 +10,8 @@ import com.mengxuegu.blog.util.base.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 用户信息表 服务实现类
@@ -36,4 +38,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
         return Result.ok( baseMapper.selectPage(req.getPage(), wrapper) );
     }
+
+    @Override
+    public Result findRoleIdsById(String id) {
+        List<String> roleIds = baseMapper.findRoleIdsById(id);
+        return Result.ok(roleIds);
+    }
+
 }

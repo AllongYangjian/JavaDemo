@@ -22,4 +22,12 @@ public interface IUserService extends IService<User> {
      */
     Result queryPage(SysUserREQ req);
 
+
+    /**
+     * 根据用户id查询当前用户所拥有的角色ids
+     * @param id 用户id
+     * @return
+     */
+    Result findRoleIdsById(String id);
+
 }

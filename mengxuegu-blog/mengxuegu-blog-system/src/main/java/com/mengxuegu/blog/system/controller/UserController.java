@@ -5,13 +5,10 @@ import com.mengxuegu.blog.system.req.SysUserREQ;
 import com.mengxuegu.blog.system.service.IUserService;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -32,5 +29,12 @@ public class UserController {
     @PostMapping("/search")
     public Result search(@RequestBody SysUserREQ req) {
         return sysUserService.queryPage(req);
+    }
+
+    @ApiImplicitParam(name = "id", value = "用户Id", required = true)
+    @ApiOperation("根据用户id查询所拥有的角色ids接口")
+    @GetMapping("/{id}/role/ids")
+    public Result findRoleIdsById(@PathVariable("id") String id) {
+        return sysUserService.findRoleIdsById(id);
     }
 }

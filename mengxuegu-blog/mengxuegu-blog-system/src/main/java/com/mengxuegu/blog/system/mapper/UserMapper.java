@@ -2,6 +2,9 @@ package com.mengxuegu.blog.system.mapper;
 
 import com.mengxuegu.blog.entities.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +16,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserMapper extends BaseMapper<User> {
 
+
+    /**
+     * 根据用户id查询当前用户所拥有的角色ids
+     * @param id 用户id
+     * @return
+     */
+    List<String> findRoleIdsById(@Param("id") String id);
 }
