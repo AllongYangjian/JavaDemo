@@ -19,4 +19,16 @@
           DELETE FROM sys_role_menu WHERE role_id = #{roleId}
     </delete>
 
+    <!--根据角色id查询此角色拥有的权限菜单ids-->
+    <select id="findMenuIdsById" resultType="String">
+        SELECT menu_id FROM sys_role_menu WHERE role_id = #{id}
+    </select>
+
+    <insert id="saveRoleMenu">
+        INSERT INTO sys_role_menu(id, role_id, menu_id) VALUES
+        <foreach collection="menuIds" item="item" separator=",">
+            ( '${@com.baomidou.mybatisplus.core.toolkit.IdWorker@getId()}', #{roleId}, #{item} )
+        </foreach>
+    </insert>
+
 </mapper>

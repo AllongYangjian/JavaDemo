@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.mengxuegu.blog.system.req.SysRoleREQ;
 import com.mengxuegu.blog.util.base.Result;
 
+import java.util.List;
+
 /**
  * <p>
  * 角色信息表 服务类
@@ -29,4 +31,19 @@ public interface IRoleService extends IService<Role> {
      * @return
      */
     Result deleteById(String id);
+
+    /**
+     * 根据角色id查询此角色拥有的权限菜单ids
+     * @param id 角色id
+     * @return
+     */
+    Result findMenuIdsById(String id);
+
+    /**
+     * 新增角色菜单权限数据到 sys_role_menu
+     * @param roleId 角色id
+     * @param menuIds 菜单id集合
+     * @return
+     */
+    Result saveRoleMenu(String roleId, List<String> menuIds);
 }

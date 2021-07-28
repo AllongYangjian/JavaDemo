@@ -7,11 +7,13 @@ import com.mengxuegu.blog.system.service.IRoleService;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -62,6 +64,25 @@ public class RoleController {
     @DeleteMapping("/{id}") // /system/role/1
     public Result delete(@PathVariable("id") String id) {
         return sysRoleService.deleteById(id);
+    }
+
+    @ApiImplicitParam(name = "id", value = "角色ID", required = true)
+    @ApiOperation("根据角色id查询拥有的菜单ids接口")
+    @GetMapping("/{id}/menu/ids") // /system/role/1/menu/ids
+    public Result findMenuIdsById(@PathVariable("id") String id) {
+        return sysRoleService.findMenuIdsById(id);
+    }
+
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "角色ID", required = true),
+            @ApiImplicitParam(allowMultiple = true, dataType = "String",
+                    name = "menuIds", value = "菜单id集合", required = true )
+    })
+    @ApiOperation("新增角色菜单关系数据接口")
+    @PostMapping("/{id}/menu/save")
+    public Result saveRoleMenu(@PathVariable("id") String id,
+                               @RequestBody List<String> menuIds) {
+        return sysRoleService.saveRoleMenu(id, menuIds);
     }
 
 }
