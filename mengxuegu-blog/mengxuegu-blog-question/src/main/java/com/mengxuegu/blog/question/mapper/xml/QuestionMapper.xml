@@ -26,6 +26,7 @@
     <sql id="Base_Column_List">
         id, user_id, nick_name, user_image, title, md_content, html_content, view_count, thumhup, reply, status, create_date, update_date
     </sql>
+
     <!--  通过问题id删除问题标签中间表 -->
     <delete id="deleteQuestionLabel">
            DELETE FROM mxg_question_label WHERE question_id = #{questionId}
@@ -56,5 +57,12 @@
         ON m1.id = m2.question_id
         WHERE m1.id = #{id}
     </select>
+
+    <update id="updateUserInfo">
+        update mxg_question set nick_name = #{nickName},user_image = #{userImage}
+        where user_id = #{userId};
+         update mxg_replay set nick_name = #{nickName},user_image = #{userImage}
+        where user_id = #{userId};
+    </update>
 
 </mapper>

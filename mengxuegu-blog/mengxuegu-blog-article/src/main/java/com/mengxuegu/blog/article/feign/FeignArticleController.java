@@ -1,8 +1,10 @@
 package com.mengxuegu.blog.article.feign;
 
+import com.mengxuegu.blog.article.service.IArticleService;
 import com.mengxuegu.blog.article.service.ILabelService;
 import com.mengxuegu.blog.entities.Label;
 import com.mengxuegu.blog.feign.IFeignArticleController;
+import com.mengxuegu.blog.feign.req.UserInfoREQ;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,5 +31,15 @@ public class FeignArticleController implements IFeignArticleController {
     @Override
     public List<Label> getLabelListByIds(List<String> labelIds) {
         return labelService.listByIds(labelIds);
+    }
+
+
+    @Autowired
+    private IArticleService articleService;
+
+
+    @Override
+    public boolean updateUserInfo(UserInfoREQ req) {
+        return articleService.updateUserInfo(req);
     }
 }

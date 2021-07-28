@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Label;
 import com.mengxuegu.blog.entities.Question;
 import com.mengxuegu.blog.feign.IFeignArticleController;
+import com.mengxuegu.blog.feign.req.UserInfoREQ;
 import com.mengxuegu.blog.question.mapper.QuestionMapper;
 import com.mengxuegu.blog.question.req.QuestionUserREQ;
 import com.mengxuegu.blog.question.service.IQuestionService;
@@ -205,8 +206,8 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
         return Result.ok(total);
     }
 
-
-
-
-
+    @Override
+    public boolean updateUserInfo(UserInfoREQ req) {
+        return baseMapper.updateUserInfo(req);
+    }
 }

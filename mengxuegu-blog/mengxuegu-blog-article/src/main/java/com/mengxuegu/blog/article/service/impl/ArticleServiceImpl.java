@@ -10,6 +10,7 @@ import com.mengxuegu.blog.entities.Article;
 import com.mengxuegu.blog.article.mapper.ArticleMapper;
 import com.mengxuegu.blog.article.service.IArticleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mengxuegu.blog.feign.req.UserInfoREQ;
 import com.mengxuegu.blog.util.base.Result;
 import com.mengxuegu.blog.util.enums.ArticleStatusEnum;
 import org.apache.commons.collections.CollectionUtils;
@@ -162,5 +163,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         data.put("articleTotalList", articleTotalList);
 
         return Result.ok(data);
+    }
+
+    @Override
+    public boolean updateUserInfo(UserInfoREQ req) {
+        return baseMapper.updateUserInfo(req);
     }
 }

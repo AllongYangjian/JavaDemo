@@ -3,6 +3,7 @@ package com.mengxuegu.blog.question.mapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Question;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.mengxuegu.blog.feign.req.UserInfoREQ;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -41,4 +42,11 @@ public interface QuestionMapper extends BaseMapper<Question> {
      */
     boolean saveQuestionLabel(@Param("questionId") String questionId,
                               @Param("labelIds") List<String> labelIds);
+
+    /**
+     * 更新用户信息
+     * @param req
+     * @return
+     */
+    boolean updateUserInfo(UserInfoREQ req);
 }

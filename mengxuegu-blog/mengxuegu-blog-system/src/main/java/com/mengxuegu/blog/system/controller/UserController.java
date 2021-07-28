@@ -2,7 +2,9 @@ package com.mengxuegu.blog.system.controller;
 
 
 import com.mengxuegu.blog.entities.User;
+import com.mengxuegu.blog.system.req.SysUserCheckPasswordREQ;
 import com.mengxuegu.blog.system.req.SysUserREQ;
+import com.mengxuegu.blog.system.req.SysUserUpdatePasswordREQ;
 import com.mengxuegu.blog.system.service.IUserService;
 import com.mengxuegu.blog.util.base.Result;
 import io.swagger.annotations.Api;
@@ -82,5 +84,30 @@ public class UserController {
     public Result view(@PathVariable("id") String id) {
         return Result.ok( sysUserService.getById(id) );
     }
+
+    @ApiOperation("校验原密码接口")
+    @PostMapping("/check/password")
+    public Result checkPassword(@RequestBody SysUserCheckPasswordREQ req) {
+        return sysUserService.checkPassword(req);
+    }
+
+    @ApiOperation("更新用户密码接口")
+    @PutMapping("/password")
+    public Result updatePassword(@RequestBody SysUserUpdatePasswordREQ req) {
+        return sysUserService.updatePassword(req);
+    }
+
+    @ApiOperation("更新用户信息接口")
+    @PutMapping
+    public Result update(@RequestBody User sysUser) {
+        return sysUserService.update(sysUser);
+    }
+
+    @ApiOperation("统计总用户接口")
+    @GetMapping("/total")
+    public Result userTotal() {
+        return sysUserService.getUserTotal();
+    }
+
 
 }

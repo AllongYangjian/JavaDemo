@@ -86,4 +86,12 @@
     <select id="selectMonthArticleTotal" resultType="map">
         select `year_month`, total from v_month_article_total;
     </select>
+
+    <!--    更新文章和评论表中的用户信息-->
+    <update id="updateUserInfo">
+        UPDATE mxg_article SET nick_name = #{nickName} , user_image = #{userImage}
+        WHERE user_id = #{userId}; -- 注意，最后加上英文分号
+        UPDATE mxg_comment SET nick_name = #{nickName} , user_image = #{userImage}
+        WHERE user_id = #{userId};
+    </update>
 </mapper>

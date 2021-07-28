@@ -3,6 +3,7 @@ package com.mengxuegu.blog.question.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.mengxuegu.blog.entities.Question;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mengxuegu.blog.feign.req.UserInfoREQ;
 import com.mengxuegu.blog.question.req.QuestionUserREQ;
 import com.mengxuegu.blog.util.base.BaseRequest;
 import com.mengxuegu.blog.util.base.Result;
@@ -95,4 +96,11 @@ public interface IQuestionService extends IService<Question> {
      * @return
      */
     Result getQuestionTotal();
+
+    /**
+     * 更新用户信息接口
+     * @param req
+     * @return
+     */
+    boolean updateUserInfo(UserInfoREQ req);
 }

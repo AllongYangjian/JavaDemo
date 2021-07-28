@@ -5,6 +5,7 @@ import com.mengxuegu.blog.article.req.ArticleREQ;
 import com.mengxuegu.blog.article.req.ArticleUserREQ;
 import com.mengxuegu.blog.entities.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mengxuegu.blog.feign.req.UserInfoREQ;
 import com.mengxuegu.blog.util.base.Result;
 import com.mengxuegu.blog.util.enums.ArticleStatusEnum;
 
@@ -86,4 +87,5 @@ public interface IArticleService extends IService<Article> {
 
     Result selectYearMonthTotal();
 
+    boolean updateUserInfo(UserInfoREQ req);
 }

@@ -2,7 +2,9 @@ package com.mengxuegu.blog.system.service;
 
 import com.mengxuegu.blog.entities.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mengxuegu.blog.system.req.SysUserCheckPasswordREQ;
 import com.mengxuegu.blog.system.req.SysUserREQ;
+import com.mengxuegu.blog.system.req.SysUserUpdatePasswordREQ;
 import com.mengxuegu.blog.util.base.Result;
 
 import java.util.List;
@@ -46,4 +48,31 @@ public interface IUserService extends IService<User> {
      * @return
      */
     Result deleteById(String id);
+
+    /**
+     * 校验原密码是否正确
+     * @param req
+     * @return
+     */
+    Result checkPassword(SysUserCheckPasswordREQ req);
+
+    /**
+     * 修改用户密码
+     * @param req
+     * @return
+     */
+    Result updatePassword(SysUserUpdatePasswordREQ req);
+
+    /**
+     * 更新用户信息
+     * @param sysUser
+     * @return
+     */
+    Result update(User sysUser);
+
+    /**
+     * 查询总用户数
+     * @return
+     */
+    Result getUserTotal();
 }
