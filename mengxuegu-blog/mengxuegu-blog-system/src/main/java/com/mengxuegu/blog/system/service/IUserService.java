@@ -2,6 +2,7 @@ package com.mengxuegu.blog.system.service;
 
 import com.mengxuegu.blog.entities.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.mengxuegu.blog.system.req.RegisterREQ;
 import com.mengxuegu.blog.system.req.SysUserCheckPasswordREQ;
 import com.mengxuegu.blog.system.req.SysUserREQ;
 import com.mengxuegu.blog.system.req.SysUserUpdatePasswordREQ;
@@ -75,4 +76,18 @@ public interface IUserService extends IService<User> {
      * @return
      */
     Result getUserTotal();
+
+    /**
+     * 校验用户名是否存在
+     * @param username
+     * @return
+     */
+    Result checkUsername(String username);
+
+    /**
+     * 注册用户
+     * @param req
+     * @return
+     */
+    Result register(RegisterREQ req);
 }

@@ -6,6 +6,7 @@ import com.mengxuegu.blog.feign.IFeignArticleController;
 import com.mengxuegu.blog.feign.IFeignQuestionController;
 import com.mengxuegu.blog.feign.req.UserInfoREQ;
 import com.mengxuegu.blog.system.mapper.UserMapper;
+import com.mengxuegu.blog.system.req.RegisterREQ;
 import com.mengxuegu.blog.system.req.SysUserCheckPasswordREQ;
 import com.mengxuegu.blog.system.req.SysUserREQ;
 import com.mengxuegu.blog.system.req.SysUserUpdatePasswordREQ;
@@ -180,6 +181,51 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         wrapper.eq("is_enabled", 1);
         Integer total = baseMapper.selectCount(wrapper);
         return Result.ok(total);
+    }
+
+
+    @Override
+    public Result checkUsername(String username) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("username", username);
+        User sysUser = baseMapper.selectOne(wrapper);
+        // 查询到则存在，存在 data=true 已被注册，不存在 data=false 未被注册
+        return Result.ok( sysUser == null ? false : true );
+    }
+
+    @Override
+    public Result register(RegisterREQ req) {
+        if(StringUtils.isEmpty( req.getUsername() )) {
+            return Result.error("用户名不能为空");
+        }
+
+        if(StringUtils.isEmpty( req.getPassword() )) {
+            return Result.error("密码不能为空");
+        }
+
+        if(StringUtils.isEmpty( req.getRepPassword() )) {
+            return Result.error("确认密码不能为空");
+        }
+
+        if( !StringUtils.equals(req.getPassword(), req.getRepPassword())) {
+            return Result.error("两次输入的密码不一致");
+        }
+
+        // 校验用户名是否存在
+        Result result = checkUsername(req.getUsername());
+        // 存在 data=true 已被注册，不存在 data=false 未被注册
+        if( (Boolean) result.getData() ) {
+            return Result.error("用户名已经被注册，请更换一个用户名");
+        }
+
+        // 将新用户信息保存到数据库
+        User sysUser = new User();
+        sysUser.setUsername( req.getUsername() );
+        sysUser.setNickName( req.getUsername() );
+        sysUser.setPassword( passwordEncoder.encode( req.getPassword() ) );
+        // 新增操作
+        this.save(sysUser);
+        return Result.ok();
     }
 
 
