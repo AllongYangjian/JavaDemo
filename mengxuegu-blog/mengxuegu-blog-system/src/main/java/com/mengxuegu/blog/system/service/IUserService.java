@@ -90,4 +90,11 @@ public interface IUserService extends IService<User> {
      * @return
      */
     Result register(RegisterREQ req);
+
+    /**
+     * 根据用户名查询用户信息
+     * @param username
+     * @return
+     */
+    User findByUsername(String username);
 }

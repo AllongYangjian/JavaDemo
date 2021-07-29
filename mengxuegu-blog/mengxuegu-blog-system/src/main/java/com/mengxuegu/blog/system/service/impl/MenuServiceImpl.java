@@ -137,4 +137,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         data.put("buttonList", buttonList);
         return Result.ok(data);
     }
+
+    @Override
+    public List<Menu> findByUserId(String userId) {
+        return baseMapper.findByUserId(userId);
+    }
 }

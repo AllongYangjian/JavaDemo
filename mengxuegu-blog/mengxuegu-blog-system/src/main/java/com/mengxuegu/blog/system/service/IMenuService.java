@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.mengxuegu.blog.system.req.SysMenuREQ;
 import com.mengxuegu.blog.util.base.Result;
 
+import java.util.List;
+
 /**
  * <p>
  * 菜单信息表 服务类
@@ -34,4 +36,11 @@ public interface IMenuService extends IService<Menu> {
      * @return
      */
     Result findUserMenuTree(String userId);
+
+    /**
+     * 通过用户id查询菜单集合
+     * @param userId
+     * @return
+     */
+    List<Menu> findByUserId(String userId);
 }
