@@ -4,6 +4,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -18,6 +19,7 @@ import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
+import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +62,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Autowired
+    @Resource
     private TokenStore tokenStore;
 
     @Autowired
@@ -78,7 +80,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         //密码模式必须使用 AuthenticationManager 实例
         endpoints.authenticationManager(authenticationManager);
+        // 刷新令牌需要 使用userDetailsService
         endpoints.userDetailsService(userDetailsService);
+        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.GET,HttpMethod.POST);
+        // 令牌管理方式
         endpoints.tokenStore(tokenStore).accessTokenConverter(jwtAccessTokenConverter);
         //添加增强器
         TokenEnhancerChain chain = new TokenEnhancerChain();
@@ -86,7 +91,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         enhancerList.add(jwtTokenEnhancer);
         enhancerList.add(jwtAccessTokenConverter);
         chain.setTokenEnhancers(enhancerList);
-        endpoints.tokenEnhancer(jwtTokenEnhancer).accessTokenConverter(jwtAccessTokenConverter);
+        // 将认证信息的增强器添加到端点上
+        endpoints.tokenEnhancer(chain).accessTokenConverter(jwtAccessTokenConverter);
     }
 
     @Override

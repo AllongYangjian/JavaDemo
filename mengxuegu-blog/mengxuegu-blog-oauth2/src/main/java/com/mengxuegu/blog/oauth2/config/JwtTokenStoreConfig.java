@@ -26,11 +26,14 @@ public class JwtTokenStoreConfig {
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
-        JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-        KeyStoreKeyFactory factory = new KeyStoreKeyFactory(new ClassPathResource("allong.jks"), "allong".toCharArray());
-        KeyPair keyPair = factory.getKeyPair("allong");
-        tokenConverter.setKeyPair(keyPair);
-        return tokenConverter;
+        JwtAccessTokenConverter converter =
+                new JwtAccessTokenConverter();
+        // 采用非对称加密文件
+        KeyStoreKeyFactory factory = new KeyStoreKeyFactory(
+                new ClassPathResource("oauth2.jks"), "oauth2".toCharArray());
+        converter.setKeyPair( factory.getKeyPair("oauth2") );
+
+        return converter;
     }
 
     @Bean
