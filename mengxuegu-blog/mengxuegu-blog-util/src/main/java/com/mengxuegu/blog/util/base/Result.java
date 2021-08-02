@@ -1,5 +1,6 @@
 package com.mengxuegu.blog.util.base;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.util.EnumResolver;
 import com.mengxuegu.blog.util.enums.ResultEnum;
 import lombok.AllArgsConstructor;
@@ -68,5 +69,8 @@ public class Result implements Serializable {
     public static Result build(ResultEnum resultEnum) {
         logger.debug("返回结果:code={}，message={}", resultEnum.getCode(), resultEnum.getDesc());
         return new Result(resultEnum.getCode(), resultEnum.getDesc(), null);
+    }
+    public  String toJSONString(){
+        return JSON.toJSONString(this);
     }
 }

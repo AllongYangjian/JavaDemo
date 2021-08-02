@@ -232,6 +232,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public User findByUsername(String username) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("username",username);
-        return getOne(wrapper);
+        return baseMapper.selectOne(wrapper);
     }
 }
