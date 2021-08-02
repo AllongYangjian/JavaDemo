@@ -11,3 +11,4 @@ spring:
     name: auth-server
   profiles:
     active: dev
+  
