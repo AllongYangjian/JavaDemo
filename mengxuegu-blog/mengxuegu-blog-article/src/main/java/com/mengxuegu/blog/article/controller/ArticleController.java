@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -32,6 +33,7 @@ public class ArticleController {
 
     @ApiOperation("根据文章标题和状态查询文分页列表接口")
     @PostMapping("/search")
+    @PreAuthorize("hasAnyAuthority('article:search')")
     public Result search(@RequestBody ArticleREQ req) {
         return articleService.queryPage(req);
     }
