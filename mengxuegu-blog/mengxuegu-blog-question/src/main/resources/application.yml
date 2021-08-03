@@ -41,12 +41,3 @@
 #  level:
 #    com.mengxuegu.blog.question.mapper: debug
 #
-#mengxuegu:
-#  blog:
-#    #  阿里云配置
-#    aliyun:
-#      endpoint: https://oss-cn-hangzhou.aliyuncs.com
-#      accessKeyId: LTAI5tQJqrxYu82xCNTdDFpF
-#      accessKeySecret: GrFWxkdYUI2mpKAQQAdxzFeilQy52a
-#      bucketName: allong
-#      bucketDomain: https://allong.oss-cn-hangzhou.aliyuncs.com/
